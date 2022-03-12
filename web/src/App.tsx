@@ -12,6 +12,7 @@ function PageStart() {
     <div className="App">
       <BigText content='Here is BigText'></BigText>
       <SmallText content='Here is SmallText'></SmallText>
+      <SmallText content='Here is SmallText'></SmallText>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
