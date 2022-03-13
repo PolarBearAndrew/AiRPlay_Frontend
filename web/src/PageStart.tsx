@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './PageStart.css';
 import { MdBuild , MdCall } from 'react-icons/md';
 import { Button, Stack, Text } from '@chakra-ui/react';
 import { BigText, SmallText } from './comm/text'
