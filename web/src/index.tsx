@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { PageStart } from './PageStart';
+import { PageSetup, PageStart } from './PageStart';
 import reportWebVitals from './reportWebVitals';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Spacer } from '@chakra-ui/react';
 
 
 ReactDOM.render(
@@ -11,6 +11,7 @@ ReactDOM.render(
     <ChakraProvider>
 
       <PageStart />
+      <PageSetup />
 
     </ChakraProvider>
   </React.StrictMode>,
