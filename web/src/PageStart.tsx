@@ -16,9 +16,9 @@ import { MdPlayArrow, MdNavigateNext, MdOutlineVolumeUp } from "react-icons/md";
 
 function PageStart() {
   return (
-    <SimpleGrid minChildWidth="390px" spacing='1' paddingBottom='8'>
+    <VStack width='390px' spacing='1' paddingBottom='8'>
       {/* navigation bar */}
-      <Flex p='2' h='16'>
+      <Flex w='full' p='2' h='16'>
         <Center w='20' h='12'>
           <Image h='4' src ={logo} />
         </Center>
@@ -78,15 +78,15 @@ function PageStart() {
           More to come....
         </Center>
       </VStack>
-    </SimpleGrid>
+    </VStack>
   );
 }
 
 function PageSetup() {
   return (
-    <SimpleGrid minChildWidth="390px" spacing='1' paddingBottom='8'>
+    <VStack width='390px' spacing='1' paddingBottom='8'>
       {/* navigation bar */}
-      <Flex p='2' h='16'>
+      <Flex w='full' p='2' h='16'>
         <Center w='20' h='12'>
           <Image h='4' src ={logo} />
         </Center>
@@ -190,15 +190,15 @@ function PageSetup() {
           </Box>
         </Flex>
       </VStack>
-    </SimpleGrid>
+    </VStack>
   );
 }
 
 function PageAdvancedSetting() {
   return (
-    <SimpleGrid minChildWidth="390px" spacing='1' paddingBottom='8'>
+    <VStack width='390px' spacing='1' paddingBottom='8'>
       {/* navigation bar */}
-      <Flex p='2' h='16'>
+      <Flex w='full' p='2' h='16'>
         <Center w='20' h='12'>
           <Image h='4' src ={logo} />
         </Center>
@@ -548,7 +548,7 @@ function PageAdvancedSetting() {
           </AccordionItem>
         </Accordion>
       </VStack>
-    </SimpleGrid>
+    </VStack>
   );
 }
 // export {PageStart};
