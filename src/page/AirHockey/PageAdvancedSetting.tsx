@@ -1,46 +1,42 @@
 import { SimpleGrid, Box, Flex, Spacer, Center, Circle, Text, VStack } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from "@chakra-ui/react";
-import { AdvancedSettingSliders } from "../../components/LayoutComponents";
+import { AdvancedSettingSliderBox } from "../../components/LayoutComponents";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { MdPlayArrow, MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-interface SliderBoxParameter {
-  name:string;
-  ariaLabel: string;
-  defaultValue: number;
-  min?: number;
-  max?: number;
-  step?: number;
-  onChangeEndFunc: {(value: number): void};
-}
+const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number}) => (
+  <VStack paddingTop="4" paddingBottom="4" spacing="8">
+    <AdvancedSettingSliderBox
+      name={"Player Circle Size"}
+      ariaLabel={"player-circle-size-slider"}
+      defaultValue={playerCircleSizeDefaultValue}
+      onChangeEndFunc={(val) => {
+        console.log("Player Circle Size: " + val);
+      }}
+    />
+    <AdvancedSettingSliderBox
+      name={"Expansion size"}
+      ariaLabel={"expasion-size"}
+      defaultValue={expansionSizeDefaultValue}
+      onChangeEndFunc={(val) => {
+        console.log("Expansion size: " + val);
+      }}
+    />
+    <AdvancedSettingSliderBox
+      name={"Expansion speed"}
+      ariaLabel={"expansion-speed"}
+      defaultValue={expansionSpeedDefaultValue}
+      onChangeEndFunc={(val) => {
+        console.log("Expansion speed: " + val);
+      }}
+    />
+  </VStack>
+);
 
-const SliderBox = ({name, ariaLabel, defaultValue, min, max, step, onChangeEndFunc} : SliderBoxParameter) => {
-  return (
-    <Flex h="4" align="center" w="full">
-    <Box w="160px" h="4" textAlign="left">
-      <Text fontSize="ml" fontWeight="500">
-        {name}
-      </Text>
-    </Box>
-    <Spacer />
-    <Box w="100px" h="4">
-      <AdvancedSettingSliders
-        ariaLabel= {ariaLabel}
-        defaultValue={defaultValue}
-        min={min || 0}
-        max={max || 100}
-        step={step || 10}
-        onChangeEndFunc={onChangeEndFunc}
-      />
-    </Box>
-  </Flex>
-  )
-}
-
-function AirHockeyPageAdvancedSetting() {
+const AirHockeyPageAdvancedSetting = () => {
   return (
     <VStack width="390px" spacing="1" paddingBottom="8">
       <Box h="16" />
@@ -84,60 +80,46 @@ function AirHockeyPageAdvancedSetting() {
             </AccordionButton>
             <AccordionPanel pb={8}>
               <VStack paddingTop="4" paddingBottom="4" spacing="8">
-                <SliderBox name={"Ball Size"} ariaLabel = {"ball-size-slider"} defaultValue={20} onChangeEndFunc={(val) => {
-                        console.log("Ball Size: "+val);
-                      }}/>
-                <SliderBox name={"Ball Speed"} ariaLabel = {"ball-speed-slider"} defaultValue={10} onChangeEndFunc={(val) => {
-                        console.log("Ball Speed: "+val);
-                      }}/>
-                <Flex h="4" align="center" w="full">
-                  <Box w="160px" h="4" textAlign="left">
-                    <Text fontSize="ml" fontWeight="500">
-                      Circle electricity
-                    </Text>
-                  </Box>
-                  <Spacer />
-                  <Box w="100px" h="4">
-                    <Slider aria-label="circle-electricity-slider" defaultValue={40} min={0} max={100} step={10}>
-                      <SliderTrack bg="grey">
-                        <SliderFilledTrack bg="#000000" />
-                      </SliderTrack>
-                      <SliderThumb boxSize="4" bg="#000000" />
-                    </Slider>
-                  </Box>
-                </Flex>
-                <Flex h="4" align="center" w="full">
-                  <Box w="160px" h="4" textAlign="left">
-                    <Text fontSize="ml" fontWeight="500">
-                      Boundary electricity
-                    </Text>
-                  </Box>
-                  <Spacer />
-                  <Box w="100px" h="4">
-                    <Slider aria-label="boundary-electricity-slider" defaultValue={20} min={0} max={100} step={10}>
-                      <SliderTrack bg="grey">
-                        <SliderFilledTrack bg="#000000" />
-                      </SliderTrack>
-                      <SliderThumb boxSize="4" bg="#000000" />
-                    </Slider>
-                  </Box>
-                </Flex>
-                <Flex h="4" align="center" w="full">
-                  <Box w="160px" h="4" textAlign="left">
-                    <Text fontSize="ml" fontWeight="500">
-                      Text size
-                    </Text>
-                  </Box>
-                  <Spacer />
-                  <Box w="100px" h="4">
-                    <Slider aria-label="text-size-slider" defaultValue={30} min={0} max={100} step={10}>
-                      <SliderTrack bg="grey">
-                        <SliderFilledTrack bg="#000000" />
-                      </SliderTrack>
-                      <SliderThumb boxSize="4" bg="#000000" />
-                    </Slider>
-                  </Box>
-                </Flex>
+                <AdvancedSettingSliderBox
+                  name={"Ball Size"}
+                  ariaLabel={"ball-size-slider"}
+                  defaultValue={20}
+                  onChangeEndFunc={(val) => {
+                    console.log("Ball Size: " + val);
+                  }}
+                />
+                <AdvancedSettingSliderBox
+                  name={"Ball Speed"}
+                  ariaLabel={"ball-speed-slider"}
+                  defaultValue={10}
+                  onChangeEndFunc={(val) => {
+                    console.log("Ball Speed: " + val);
+                  }}
+                />
+                <AdvancedSettingSliderBox
+                  name={"Circle electricity"}
+                  ariaLabel={"circle-electricity-slider"}
+                  defaultValue={40}
+                  onChangeEndFunc={(val) => {
+                    console.log("Circle electricity: " + val);
+                  }}
+                />
+                <AdvancedSettingSliderBox
+                  name={"Boundary electricity"}
+                  ariaLabel={"boundary-electricity-slider"}
+                  defaultValue={20}
+                  onChangeEndFunc={(val) => {
+                    console.log("Boundary electricity: " + val);
+                  }}
+                />
+                <AdvancedSettingSliderBox
+                  name={"Text size"}
+                  ariaLabel={"text-size-slider"}
+                  defaultValue={30}
+                  onChangeEndFunc={(val) => {
+                    console.log("Text size: " + val);
+                  }}
+                />
               </VStack>
             </AccordionPanel>
           </AccordionItem>
@@ -150,8 +132,8 @@ function AirHockeyPageAdvancedSetting() {
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pb={4}>
-              <Tabs w="full" isFitted variant="soft-rounded" colorScheme="#46a3f7">
-                <TabList>
+              <Tabs w="full" isFitted variant="soft-rounded" colorScheme="tab">
+                <TabList >
                   <Tab fontSize="sm">
                     🦁 <br></br>No CNTL
                   </Tab>
@@ -167,215 +149,19 @@ function AirHockeyPageAdvancedSetting() {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <VStack paddingTop="4" paddingBottom="4" spacing="8">
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left" verticalAlign="center">
-                          <Text fontSize="ml" fontWeight="500">
-                            Player Circle Size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4" verticalAlign="center">
-                          <Slider aria-label="player-circle-size-slider" defaultValue={80} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expasion-size" defaultValue={40} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion speed
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expansion-speed" defaultValue={30} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                    </VStack>
+                    <TabPanelContent playerCircleSizeDefaultValue={80} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} />
                   </TabPanel>
 
                   <TabPanel>
-                    <VStack paddingTop="4" paddingBottom="4" spacing="8">
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Player Circle Size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="player-circle-size-slider" defaultValue={50} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expasion-size" defaultValue={90} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion speed
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expansion-speed" defaultValue={20} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                    </VStack>
+                    <TabPanelContent playerCircleSizeDefaultValue={30} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} />
                   </TabPanel>
 
                   <TabPanel>
-                    <VStack paddingTop="4" paddingBottom="4" spacing="8">
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Player Circle Size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="player-circle-size-slider" defaultValue={30} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expasion-size" defaultValue={60} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion speed
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expansion-speed" defaultValue={50} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                    </VStack>
+                    <TabPanelContent playerCircleSizeDefaultValue={30} expansionSizeDefaultValue={60} expansionSpeedDefaultValue={50} />
                   </TabPanel>
 
                   <TabPanel>
-                    <VStack paddingTop="4" paddingBottom="4" spacing="8">
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Player Circle Size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="player-circle-size-slider" defaultValue={10} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion size
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expasion-size" defaultValue={20} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                      <Flex h="4" align="center" w="full">
-                        <Box w="160px" h="4" textAlign="left">
-                          <Text fontSize="ml" fontWeight="500">
-                            Expansion speed
-                          </Text>
-                        </Box>
-                        <Spacer />
-                        <Box w="100px" h="4">
-                          <Slider aria-label="expansion-speed" defaultValue={30} min={0} max={100} step={10}>
-                            <SliderTrack bg="grey">
-                              <SliderFilledTrack bg="#000000" />
-                            </SliderTrack>
-                            <SliderThumb boxSize="4" bg="#000000" />
-                          </Slider>
-                        </Box>
-                      </Flex>
-                    </VStack>
+                    <TabPanelContent playerCircleSizeDefaultValue={10} expansionSizeDefaultValue={20} expansionSpeedDefaultValue={30} />
                   </TabPanel>
                 </TabPanels>
               </Tabs>
@@ -391,7 +177,7 @@ function AirHockeyPageAdvancedSetting() {
             </AccordionButton>
             <AccordionPanel pb={4}>
               <Box paddingTop="4" paddingBottom="4">
-                What should we put in here?
+                What should we put in here? Videos for CV team.
               </Box>
             </AccordionPanel>
           </AccordionItem>
