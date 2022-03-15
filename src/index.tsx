@@ -8,6 +8,7 @@ import { NavBar } from './components/NavBar';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, VStack } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import theme from './lib/theme';
 
 interface RootProps {
   children: JSX.Element[];
@@ -23,7 +24,7 @@ function Root(props: RootProps) {
 
 ReactDOM.render(
     <React.StrictMode>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <BrowserRouter>
           <Root>
             <NavBar />
