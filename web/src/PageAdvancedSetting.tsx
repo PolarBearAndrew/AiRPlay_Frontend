@@ -1,11 +1,11 @@
-import React from 'react';
 import './PageStart.css';
-import { SimpleGrid, Box, Flex, Spacer, Center, Image, Circle, Text, VStack } from '@chakra-ui/react';
+import { SimpleGrid, Box, Flex, Spacer, Center, Circle, Text, VStack } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react'
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark } from '@chakra-ui/react'
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react'
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { MdPlayArrow } from "react-icons/md";
+import { MdPlayArrow, MdKeyboardArrowLeft } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 function PageAdvancedSetting() {
   return (
@@ -38,9 +38,11 @@ function PageAdvancedSetting() {
             </Circle>
           </Center>
         </SimpleGrid>
-        <Button leftIcon={<MdPlayArrow />} colorScheme='yellow' variant='solid'>
-          Play
-        </Button>
+        <Link to='/airhockey/setup'>
+          <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme='yellow' variant='outline'>
+            Back
+          </Button>
+        </Link>
         <Spacer />
         {/* Advanced setting */}
         <Accordion w='full' defaultIndex={[0]} allowMultiple>
@@ -51,7 +53,7 @@ function PageAdvancedSetting() {
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
-            <AccordionPanel pb={8}>
+            <AccordionPanel pb={8} >
               <VStack paddingTop='4' paddingBottom='4' spacing='8'>
                 <Flex h='4' align='center' w='full'> 
                   <Box w='160px' h='4' textAlign='left'>

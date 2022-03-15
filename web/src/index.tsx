@@ -6,7 +6,7 @@ import { PageSetup } from './PageSetup';
 import { PageAdvancedSetting } from './PageAdvancedSetting';
 import { NavBar } from './NavBar';
 import reportWebVitals from './reportWebVitals';
-import { ChakraProvider, Spacer, VStack, Flex, Center, Image } from '@chakra-ui/react';
+import { ChakraProvider, VStack } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 interface RootProps {

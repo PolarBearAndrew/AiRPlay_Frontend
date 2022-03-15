@@ -1,12 +1,8 @@
-import React from 'react';
 import ProgressSeparator from './comm/ProgressSeparator.svg';
 import './PageStart.css';
-import { PageStart } from './PageStart';
-import { PageSetup } from './PageSetup';
-import { PageAdvancedSetting } from './PageAdvancedSetting';
-import { SimpleGrid, Box, Flex, Spacer, Center, Image, Circle, Text, VStack, propNames } from '@chakra-ui/react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@chakra-ui/react';
-import { Route } from 'react-router-dom';
+import { Box, Flex, Center, Image, Circle, VStack } from '@chakra-ui/react';
+import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 
 interface ProgressBarProps {
@@ -20,28 +16,32 @@ function ProgressBar(props: ProgressBarProps) {
         <Center>
             <Breadcrumb spacing='4' separator={<Image w='700' h='20' src={ProgressSeparator} />}>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href='#'>
-                        <MyCircle IconStep='1' Active={props.Step >= 1} />
-                        <Box fontSize='xs' fontWeight='bold' textAlign='center'>
-                            Select
-                        </Box>
-                    </BreadcrumbLink>
+                    <Link to={ (props.Step >= 1) ? '/' : '#' }>
+                        <VStack spacing='1'>
+                            <MyCircle IconStep='1' Active={props.Step >= 1} />
+                            <Box fontSize='xs' fontWeight='bold' textAlign='center'>
+                                Select
+                            </Box>
+                        </VStack>
+                    </Link>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href='#'>
-                        <MyCircle IconStep='2' Active={props.Step >= 2} />
-                        <Box fontSize='xs' fontWeight='bold' textAlign='center'>
-                            Setup
-                        </Box>
-                    </BreadcrumbLink>
+                    <Link to={ (props.Step >= 2) ? '/airhockey/setup' : '#' }>
+                        <VStack spacing='1'>
+                            <MyCircle IconStep='2' Active={props.Step >= 2} />
+                            <Box fontSize='xs' fontWeight='bold' textAlign='center'>
+                                Setup
+                            </Box>
+                        </VStack>
+                    </Link>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href='#'>
+                    <VStack spacing='1'>
                         <MyCircle IconStep='3' Active={props.Step >= 3} />
                         <Box fontSize='xs' fontWeight='bold' textAlign='center'>
                             Play
                         </Box>
-                    </BreadcrumbLink>
+                    </VStack>  
                 </BreadcrumbItem>
             </Breadcrumb>
         </Center>
