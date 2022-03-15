@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import logo from './comm/Logo.svg';
-import './index.css';
+import logo from '../comm/Logo.svg';
+import '../index.css';
 import { Spacer, Flex, Center, Image, useDisclosure, IconButton, Box, Text } from '@chakra-ui/react';
 import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons';

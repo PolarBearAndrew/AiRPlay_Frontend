@@ -1,4 +1,3 @@
-import './PageStart.css';
 import { SimpleGrid, Box, Flex, Spacer, Center, Circle, Text, VStack } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react'
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react'
@@ -7,7 +6,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { MdPlayArrow, MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
-function PageAdvancedSetting() {
+function AirHockeyPageAdvancedSetting() {
   return (
     <VStack width='390px' spacing='1' paddingBottom='8'>
       <Box h='16'/>
@@ -357,5 +356,5 @@ function PageAdvancedSetting() {
   );
 }
 
-export { PageAdvancedSetting }
+export { AirHockeyPageAdvancedSetting }
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ProgressBar } from './ProgressBar';
-import './PageStart.css';
+import { ProgressBar } from '../../components/ProgressBar';
 import { Box, Flex, Spacer, Text, useDisclosure, VStack } from '@chakra-ui/react';
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 import { Button, IconButton } from '@chakra-ui/react'
@@ -12,7 +11,7 @@ import { useTimer } from 'react-timer-hook';
 
 
 
-function PageSetup() {
+function AirHockeyPageSetup() {
 
   const [myStep, setMyStep] = useState(2);
   
@@ -196,5 +195,5 @@ function getMyProgress(currSec: number, currMin: number, totalTime: number) {
   return currProgress
 }
 
-export { PageSetup }
+export { AirHockeyPageSetup }
 

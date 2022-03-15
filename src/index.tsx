@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { PageStart } from './PageStart';
-import { PageSetup } from './PageSetup';
-import { PageAdvancedSetting } from './PageAdvancedSetting';
-import { NavBar } from './NavBar';
+import { PageStart } from './page/PageStart';
+import { AirHockeyPageSetup } from './page/AirHockey/PageSetup';
+import { AirHockeyPageAdvancedSetting } from './page/AirHockey/PageAdvancedSetting';
+import { NavBar } from './components/NavBar';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, VStack } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -29,8 +29,8 @@ ReactDOM.render(
             <NavBar />
             <Routes>
               <Route path='/' element={<PageStart />} />
-              <Route path='/airhockey/setup' element={<PageSetup />} />
-              <Route path='/airhockey/setting' element={<PageAdvancedSetting />} />
+              <Route path='/airhockey/setup' element={<AirHockeyPageSetup />} />
+              <Route path='/airhockey/setting' element={<AirHockeyPageAdvancedSetting />} />
             </Routes>
           </Root>
         </BrowserRouter> 

@@ -1,5 +1,5 @@
-import AiRHockeyVideo from './comm/AirHockeyVideo.gif';
-import { ProgressBar } from './ProgressBar';
+import AiRHockeyVideo from '../comm/AirHockeyVideo.gif';
+import { ProgressBar } from '../components/ProgressBar';
 import './PageStart.css';
 import { Box, Center, Image, Text, VStack } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
