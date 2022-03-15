@@ -6,20 +6,19 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIco
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { MdPlayArrow, MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number}) => (
+const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue, setPlayerCircleSize}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number,setPlayerCircleSize:{(value: number): void}}) => (
   <VStack paddingTop="4" paddingBottom="4" spacing="8">
     <AdvancedSettingSliderBox
       name={"Player Circle Size"}
       ariaLabel={"player-circle-size-slider"}
       defaultValue={playerCircleSizeDefaultValue}
-      onChangeEndFunc={(val) => {
-        console.log("Player Circle Size: " + val);
-      }}
+      onChangeEndFunc={setPlayerCircleSize}
     />
     <AdvancedSettingSliderBox
       name={"Expansion size"}
-      ariaLabel={"expasion-size"}
+      ariaLabel={"expansion-size"}
       defaultValue={expansionSizeDefaultValue}
       onChangeEndFunc={(val) => {
         console.log("Expansion size: " + val);
@@ -37,6 +36,7 @@ const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValu
 );
 
 const AirHockeyPageAdvancedSetting = () => {
+  const [circleSize, setCircleSize] = useState([80,56,64,48]);
   return (
     <VStack width="390px" spacing="1" paddingBottom="8">
       <Box h="16" />
@@ -49,22 +49,22 @@ const AirHockeyPageAdvancedSetting = () => {
         </Box>
         <SimpleGrid w="full" columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size="20" borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={circleSize[0]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🦁
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size="14" borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={circleSize[1]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🐼
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size="16" borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={circleSize[2]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🐶
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size="12" borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={circleSize[3]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🐱
             </Circle>
           </Center>
@@ -97,19 +97,19 @@ const AirHockeyPageAdvancedSetting = () => {
                   }}
                 />
                 <AdvancedSettingSliderBox
-                  name={"Circle electricity"}
-                  ariaLabel={"circle-electricity-slider"}
+                  name={"Circle elasticity"}
+                  ariaLabel={"circle-elasticity-slider"}
                   defaultValue={40}
                   onChangeEndFunc={(val) => {
-                    console.log("Circle electricity: " + val);
+                    console.log("Circle elasticity: " + val);
                   }}
                 />
                 <AdvancedSettingSliderBox
-                  name={"Boundary electricity"}
-                  ariaLabel={"boundary-electricity-slider"}
+                  name={"Boundary elasticity"}
+                  ariaLabel={"boundary-elasticity-slider"}
                   defaultValue={20}
                   onChangeEndFunc={(val) => {
-                    console.log("Boundary electricity: " + val);
+                    console.log("Boundary elasticity: " + val);
                   }}
                 />
                 <AdvancedSettingSliderBox
@@ -149,19 +149,44 @@ const AirHockeyPageAdvancedSetting = () => {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={80} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} />
+                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[0]} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} setPlayerCircleSize={(val)=>{
+                      console.log(val);
+                      setCircleSize((circleSize)=>{
+                        const tmp = [...circleSize];
+                        tmp[0] = val;
+                        return tmp
+                      })
+                    }} />
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={30} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} />
+                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[1]} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} setPlayerCircleSize={(val)=>{
+                      setCircleSize((circleSize)=>{
+                        const tmp = [...circleSize];
+                        tmp[1] = val;
+                        return tmp
+                      })
+                    }}/>
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={30} expansionSizeDefaultValue={60} expansionSpeedDefaultValue={50} />
+                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[2]} expansionSizeDefaultValue={60} expansionSpeedDefaultValue={50} setPlayerCircleSize={(val)=>{
+                      setCircleSize((circleSize)=>{
+                        const tmp = [...circleSize];
+                        tmp[2] = val;
+                        return tmp
+                      })
+                    }}/>
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={10} expansionSizeDefaultValue={20} expansionSpeedDefaultValue={30} />
+                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[3]} expansionSizeDefaultValue={20} expansionSpeedDefaultValue={30} setPlayerCircleSize={(val)=>{
+                      setCircleSize((circleSize)=>{
+                        const tmp = [...circleSize];
+                        tmp[3] = val;
+                        return tmp
+                      })
+                    }}/>
                   </TabPanel>
                 </TabPanels>
               </Tabs>
