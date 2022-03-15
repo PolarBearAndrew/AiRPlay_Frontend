@@ -1,4 +1,6 @@
 {
+  "proxy": "http://localhost:3000",
+  "homepage": ".",
   "name": "web",
   "version": "0.1.0",
   "private": true,
@@ -19,6 +21,7 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-native": "^0.67.3",
+    "react-router-dom": "6",
     "react-scripts": "5.0.0",
     "typescript": "^4.6.2",
     "web-vitals": "^2.1.4"

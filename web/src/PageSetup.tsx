@@ -1,11 +1,12 @@
-import React from 'react';
 import { ProgressBar } from './ProgressBar';
 import './PageStart.css';
-import { SimpleGrid, Box, Flex, Spacer, Center, Image, Circle, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Center, Image, Text, VStack } from '@chakra-ui/react';
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
-import { Button, ButtonGroup, IconButton } from '@chakra-ui/react'
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark } from '@chakra-ui/react'
+import { Button, IconButton } from '@chakra-ui/react'
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react'
 import { MdPlayArrow, MdNavigateNext, MdOutlineVolumeUp } from "react-icons/md";
+import { Link } from "react-router-dom";
+
 
 function PageSetup() {
   return (
@@ -42,13 +43,17 @@ function PageSetup() {
           </Box>
         </Flex>
         <Flex h='4' align='center' w='full'> 
-          <Box w='100px' h='4' textAlign='left'>
-            <Text fontSize='ml' fontWeight='700'>Setting</Text>
-          </Box>
+          <Link to='/airhockey/setting'>
+            <Box w='100px' h='4' textAlign='left'>
+              <Text fontSize='ml' fontWeight='700'>Setting</Text>
+            </Box>
+          </Link>
           <Spacer />
-          <Box w='32px' h='4'>
-            <IconButton variant='link' colorScheme='#000000' aria-label='Advanced setting' icon={<MdNavigateNext />} size='lg'/>
-          </Box>
+          <Link to='/airhockey/setting'>
+            <Box w='32px' h='4'>
+              <IconButton variant='link' colorScheme='#000000' aria-label='Advanced setting' icon={<MdNavigateNext />} size='lg'/>
+            </Box>
+          </Link>
         </Flex>
         <Flex h='4' align='center' w='full'> 
           <Box w='100px' h='4' textAlign='left'>
@@ -72,6 +77,7 @@ function PageSetup() {
     </VStack>
   );
 }
+
 
 export { PageSetup }
 

@@ -1,41 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import logo from './comm/Logo.svg';
 import './index.css';
 import { PageStart } from './PageStart';
 import { PageSetup } from './PageSetup';
 import { PageAdvancedSetting } from './PageAdvancedSetting';
+import { NavBar } from './NavBar';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, Spacer, VStack, Flex, Center, Image } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+interface RootProps {
+  children: JSX.Element[];
+}
 
+function Root(props: RootProps) {
+  return (
+    <VStack width='390px' spacing='1' paddingBottom='8'>
+      {props.children}
+    </VStack>
+  )
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ChakraProvider>
-      {/* navigation bar */}
-      <VStack width='390px' spacing='1' paddingBottom='8'>
-        <Flex position='fixed' w='full' p='2' h='16' bg='white'>
-          <Center w='20' h='12'>
-            <Image h='4' src ={logo} />
-          </Center>
-          <Spacer />
-            <Center w='12' h='12'>
-          <HamburgerIcon w='6' h='6' />
-          </Center>
-        </Flex>
-        <PageStart />
-        <PageSetup />
-        <PageAdvancedSetting />
-      </VStack>
-    </ChakraProvider>
-  </React.StrictMode>,
+    <React.StrictMode>
+      <ChakraProvider>
+        <BrowserRouter>
+          <Root>
+            <NavBar />
+            <Routes>
+              <Route path='/' element={<PageStart />} />
+              <Route path='/airhockey/setup' element={<PageSetup />} />
+              <Route path='/airhockey/setting' element={<PageAdvancedSetting />} />
+            </Routes>
+          </Root>
+        </BrowserRouter> 
+      </ChakraProvider>
+    </React.StrictMode>,
   document.getElementById('root')
 );
+
+// function PageStartRoute() {
+//   return (
+//       <nav>
+//         <Link to="/">About</Link>
+//       </nav>
+//     </>
+//   );
+// }
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-

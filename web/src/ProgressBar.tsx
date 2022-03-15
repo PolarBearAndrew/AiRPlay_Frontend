@@ -1,8 +1,13 @@
 import React from 'react';
 import ProgressSeparator from './comm/ProgressSeparator.svg';
 import './PageStart.css';
+import { PageStart } from './PageStart';
+import { PageSetup } from './PageSetup';
+import { PageAdvancedSetting } from './PageAdvancedSetting';
 import { SimpleGrid, Box, Flex, Spacer, Center, Image, Circle, Text, VStack, propNames } from '@chakra-ui/react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@chakra-ui/react';
+import { Route } from 'react-router-dom';
+
 
 interface ProgressBarProps {
     Step: number;
