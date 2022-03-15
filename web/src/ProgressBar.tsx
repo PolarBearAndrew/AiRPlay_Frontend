@@ -14,7 +14,7 @@ function ProgressBar(props: ProgressBarProps) {
     <Flex p='2' h='20'>
         {/* <Spacer /> */}
         <Center>
-            <Breadcrumb spacing='4' separator={<Image w='700' h='20' src={ProgressSeparator} />}>
+            <Breadcrumb spacing='4' separator={<Box borderTop='1px' w='50px' h='20px'/>}>
                 <BreadcrumbItem>
                     <Link to={ (props.Step >= 1) ? '/' : '#' }>
                         <VStack spacing='1'>
