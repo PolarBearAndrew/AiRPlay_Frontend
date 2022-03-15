@@ -38,12 +38,6 @@ function PageAdvancedSetting() {
             </Circle>
           </Center>
         </SimpleGrid>
-        <Link to='/airhockey/setup'>
-          <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme='yellow' variant='outline'>
-            Back
-          </Button>
-        </Link>
-        <Spacer />
         {/* Advanced setting */}
         <Accordion w='full' defaultIndex={[0]} allowMultiple>
           <AccordionItem paddingY={2}>
@@ -353,6 +347,11 @@ function PageAdvancedSetting() {
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
+        <Link to='/airhockey/setup'>
+          <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme='yellow' variant='outline'>
+            Back
+          </Button>
+        </Link>
       </VStack>
     </VStack>
   );
