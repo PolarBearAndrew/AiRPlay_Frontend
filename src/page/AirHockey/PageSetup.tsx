@@ -42,7 +42,7 @@ function AirHockeyPageSetup() {
 
   return (
     <VStack width="390px" spacing="1" paddingBottom="8">
-      <Box h="16" />
+      <Box h="1" />
       {/* progress bar */}
       <ProgressBar Step={myStep} />
       {/* game setup */}
