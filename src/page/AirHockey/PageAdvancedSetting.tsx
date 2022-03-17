@@ -6,7 +6,8 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIco
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { MdPlayArrow, MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getDataModel from "./DataModel";
 
 const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue, setPlayerCircleSize}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number,setPlayerCircleSize:{(value: number): void}}) => (
   <VStack paddingTop="4" paddingBottom="4" spacing="8">
@@ -36,7 +37,15 @@ const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValu
 );
 
 const AirHockeyPageAdvancedSetting = () => {
-  const [circleSize, setCircleSize] = useState([80,56,64,48]);
+  const airHockeyDataModel = getDataModel();
+  const [airHockeyGameData, setAirHockeyGameData] = useState(airHockeyDataModel.getAirHockeyGameDataCopy())
+
+  useEffect(() => {
+    airHockeyDataModel.subscribeToUpdate(()=>{
+      setAirHockeyGameData(airHockeyDataModel.getAirHockeyGameDataCopy())
+    })
+  },[])
+
   return (
     <VStack width="390px" spacing="1" paddingBottom="8">
       <Box h="16" />
@@ -49,22 +58,22 @@ const AirHockeyPageAdvancedSetting = () => {
         </Box>
         <SimpleGrid w="full" columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={circleSize[0]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🦁
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={circleSize[1]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🐼
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={circleSize[2]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🐶
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={circleSize[3]+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🐱
             </Circle>
           </Center>
@@ -149,44 +158,27 @@ const AirHockeyPageAdvancedSetting = () => {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[0]} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} setPlayerCircleSize={(val)=>{
-                      console.log(val);
-                      setCircleSize((circleSize)=>{
-                        const tmp = [...circleSize];
-                        tmp[0] = val;
-                        return tmp
-                      })
-                    }} />
+                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.buttonSpeed*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} setPlayerCircleSize={(val)=>{
+                      airHockeyDataModel.setButtonSpeed(val/10)
+                      }} />
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[1]} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} setPlayerCircleSize={(val)=>{
-                      setCircleSize((circleSize)=>{
-                        const tmp = [...circleSize];
-                        tmp[1] = val;
-                        return tmp
-                      })
-                    }}/>
+                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.buttonSpeed*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} setPlayerCircleSize={(val)=>{
+                      airHockeyDataModel.setButtonSpeed(val/10)
+                      }}/>
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[2]} expansionSizeDefaultValue={60} expansionSpeedDefaultValue={50} setPlayerCircleSize={(val)=>{
-                      setCircleSize((circleSize)=>{
-                        const tmp = [...circleSize];
-                        tmp[2] = val;
-                        return tmp
-                      })
-                    }}/>
+                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.buttonSpeed*10} expansionSizeDefaultValue={60} expansionSpeedDefaultValue={50} setPlayerCircleSize={(val)=>{
+                      airHockeyDataModel.setButtonSpeed(val/10)
+                      }}/>
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={circleSize[3]} expansionSizeDefaultValue={20} expansionSpeedDefaultValue={30} setPlayerCircleSize={(val)=>{
-                      setCircleSize((circleSize)=>{
-                        const tmp = [...circleSize];
-                        tmp[3] = val;
-                        return tmp
-                      })
-                    }}/>
+                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.buttonSpeed*10} expansionSizeDefaultValue={20} expansionSpeedDefaultValue={30} setPlayerCircleSize={(val)=>{
+                      airHockeyDataModel.setButtonSpeed(val/10)
+                      }}/>
                   </TabPanel>
                 </TabPanels>
               </Tabs>
