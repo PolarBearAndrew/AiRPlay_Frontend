@@ -45,7 +45,7 @@ const AirHockeyPageAdvancedSetting = () => {
     airHockeyDataModel.subscribeToUpdate(()=>{
       setAirHockeyGameData(airHockeyDataModel.getAirHockeyGameDataCopy())
     })
-  },[])
+  },[airHockeyDataModel])
 
   return (
     <VStack width="390px" spacing="1" paddingBottom="8">

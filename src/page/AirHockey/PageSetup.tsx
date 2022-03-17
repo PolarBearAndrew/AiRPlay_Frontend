@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import { ProgressBar } from '../../components/ProgressBar';
-import { Box, Flex, Spacer, Text, useDisclosure, VStack } from '@chakra-ui/react';
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
-import { Button, IconButton } from '@chakra-ui/react'
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react'
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react'
+import React, { useState } from "react";
+import { ProgressBar } from "../../components/ProgressBar";
+import { Box, Flex, LinkBox, LinkOverlay, Spacer, Text, useDisclosure, VStack } from "@chakra-ui/react";
+import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
+import { Button, IconButton } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from "@chakra-ui/react";
 import { MdPlayArrow, MdNavigateNext, MdOutlineVolumeUp, MdPause } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useTimer } from 'react-timer-hook';
-
-
+import { useTimer } from "react-timer-hook";
+import getDataModel from "./DataModel";
+import { SettingClickBox, SettingLinkBox } from "../../components/LayoutComponents";
 
 function AirHockeyPageSetup() {
-
   const [myStep, setMyStep] = useState(2);
-  
+
   const totalSeconds = 10; //next step - set timer
   const time = new Date();
-  time.setSeconds(time.getSeconds() + totalSeconds); 
+  time.setSeconds(time.getSeconds() + totalSeconds);
 
   const timerConfig = {
     autoStart: false,
-    expiryTimestamp: time,
+    expiryTimestamp: time
     // onExpire: () => <EndModal />,
   };
 
@@ -30,142 +29,122 @@ function AirHockeyPageSetup() {
     minutes,
     isRunning,
     start,
-    pause,
+    pause
     // resume,
     // restart,
   } = useTimer(timerConfig);
 
-  const minutesSt = minutes + '';
-  const secondsSt = seconds + '';
+  const minutesSt = minutes + "";
+  const secondsSt = seconds + "";
+
+  // Connection to data
+  const airHockeyDataModel = getDataModel();
 
   return (
-    <VStack width='390px' spacing='1' paddingBottom='8'>
-      <Box h='16'/>
+    <VStack width="390px" spacing="1" paddingBottom="8">
+      <Box h="16" />
       {/* progress bar */}
-        <ProgressBar Step={myStep}/>
+      <ProgressBar Step={myStep} />
       {/* game setup */}
-      <VStack p='4' px='12' spacing='8' w='full'>
-        <Box w='full' h='8' textAlign='center'>
-          <Text fontSize='3xl' fontWeight='700'>Air Hockey</Text>
+      <VStack p="4" px="12" spacing="8" w="full">
+        <Box w="full" h="8" textAlign="center">
+          <Text fontSize="3xl" fontWeight="700">
+            Air Hockey
+          </Text>
         </Box>
-        <CircularProgress value={getMyProgress(seconds, minutes, totalSeconds)} color='#46a3f7' capIsRound size='60' thickness='8'>
-          <CircularProgressLabel fontSize='5xl' fontWeight='500'>
-            {minutesSt.padStart(2,'0')}:{secondsSt.padStart(2,'0')}
+        <CircularProgress value={getMyProgress(seconds, minutes, totalSeconds)} color="#46a3f7" capIsRound size="60" thickness="8">
+          <CircularProgressLabel fontSize="5xl" fontWeight="500">
+            {minutesSt.padStart(2, "0")}:{secondsSt.padStart(2, "0")}
           </CircularProgressLabel>
         </CircularProgress>
-        {isRunning?     
-          <Button 
-            w ='24'
-            leftIcon={<MdPause />} 
-            colorScheme='yellow' 
-            variant='outline' 
-            onClick={() => {setMyStep(2); pause()}}
+        {isRunning ? (
+          <Button
+            w="24"
+            leftIcon={<MdPause />}
+            colorScheme="yellow"
+            variant="outline"
+            onClick={() => {
+              setMyStep(2);
+              pause();
+            }}
           >
             Pause
           </Button>
-          : 
-          <Button 
-          w ='24'
-          leftIcon={<MdPlayArrow />} 
-          colorScheme='yellow' 
-          variant='solid' 
-          onClick={() => {setMyStep(3); start()}}
-        >
-          Play
-        </Button> 
-        }
+        ) : (
+          <Button
+            w="24"
+            leftIcon={<MdPlayArrow />}
+            colorScheme="yellow"
+            variant="solid"
+            onClick={() => {
+              setMyStep(3);
+              start();
+              airHockeyDataModel.setStartStop();
+            }}
+          >
+            Play
+          </Button>
+        )}
         {/* <Button onClick={() => setMyStep((previousVal) => (previousVal + 1))}>Next step</Button> */}
         <Spacer />
-        <Flex h='4' align='center' w='full'> 
-          <Box w='100px' h='4' textAlign='left'>
-            <Text fontSize='ml' fontWeight='700'>Volume</Text>
+        <Flex h="4" align="center" w="full">
+          <Box w="100px" h="4" textAlign="left">
+            <Text fontSize="ml" fontWeight="700">
+              Volume
+            </Text>
           </Box>
           <Spacer />
-          <Box w='200px' h='4'>
-            <Slider aria-label='volume-slider' defaultValue={30} min={0} max={100} step={10}>
-              <SliderTrack bg='gray.300'>
-                <SliderFilledTrack bg='#000000' />
+          <Box w="200px" h="4">
+            <Slider aria-label="volume-slider" defaultValue={30} min={0} max={100} step={10}>
+              <SliderTrack bg="gray.300">
+                <SliderFilledTrack bg="#000000" />
               </SliderTrack>
               <SliderThumb boxSize={6}>
-                <Box color='#000000' as={MdOutlineVolumeUp} />
+                <Box color="#000000" as={MdOutlineVolumeUp} />
               </SliderThumb>
             </Slider>
           </Box>
         </Flex>
-        <Flex h='4' align='center' w='full'> 
-          <Link to='/airhockey/setting'>
-            <Box w='100px' h='4' textAlign='left'>
-              <Text fontSize='ml' fontWeight='700'>Setting</Text>
-            </Box>
-          </Link>
-          <Spacer />
-          <Link to='/airhockey/setting'>
-            <Box w='32px' h='4'>
-              <IconButton variant='link' colorScheme='#000000' aria-label='Advanced setting' icon={<MdNavigateNext />} size='lg'/>
-            </Box>
-          </Link>
-        </Flex>
-        <Flex h='4' align='center' w='full'> 
-          <Box w='100px' h='4' textAlign='left'>
-            <Text fontSize='ml' fontWeight='700'>Tutorial</Text>
-          </Box>
-          <Spacer />
-          <Box w='32px' h='4'>
-            <IconButton variant='link' colorScheme='#000000' aria-label='Advanced setting' icon={<MdNavigateNext />} size='lg'/>
-          </Box>
-        </Flex>
-        <Flex h='4' align='center' w='full'> 
-          <Link to='/'>
-            <Box w='100px' h='4' textAlign='left'>
-              <Text fontSize='ml' fontWeight='700' textColor='red'>Exit</Text>
-            </Box>
-          </Link>
-          <Spacer />
-          <Link to='/'>
-            <Box w='32px' h='4'>
-              <IconButton variant='link' colorScheme='red' aria-label='Advanced setting' icon={<MdNavigateNext />} size='lg'/>
-            </Box>
-          </Link>
-        </Flex>
+        <SettingLinkBox name = "Setting" link = "/airhockey/setting" ariaLabel="Advanced setting"/>
+        <SettingLinkBox name = "Tutorial" link = "/" ariaLabel="Tutorial"/>
+        <SettingClickBox name = "Recapture Background" callback={()=>{airHockeyDataModel.setCapture();}}  ariaLabel="recapture-background"/>
+        <SettingLinkBox name = "Exit" link = "/" ariaLabel="Exit" colorScheme="red" textColor="red"/>
       </VStack>
     </VStack>
   );
 }
 
-
 // function PlayBtN(){
-  
 
-  
 //   return(
-//     <Button 
+//     <Button
 //       w ='24'
-//       leftIcon={<MdPlayArrow />} 
-//       colorScheme='yellow' 
-//       variant='solid' 
+//       leftIcon={<MdPlayArrow />}
+//       colorScheme='yellow'
+//       variant='solid'
 //       onClick={() => { this.PageSetup(setMyStep(3)); this.PageSetup(start())}}
 //     >
 //       Play
 //     </Button>
-//   )  
+//   )
 // }
 
 // function PauseBtN(){
 //   return(
-//     <Button 
+//     <Button
 //       w ='24'
-//       leftIcon={<MdPause />} 
-//       colorScheme='yellow' 
-//       variant='outline' 
+//       leftIcon={<MdPause />}
+//       colorScheme='yellow'
+//       variant='outline'
 //       // onClick={() => {setMyStep(2)}}
 //     >
 //       Pause
 //     </Button>
-//   )  
+//   )
 // }
 
 // function EndModal() {
-  
+
 //   const { isOpen, onClose } = useDisclosure()
 
 //   return (
@@ -191,9 +170,8 @@ function AirHockeyPageSetup() {
 
 function getMyProgress(currSec: number, currMin: number, totalTime: number) {
   const currTotalSec = currSec + currMin * 60;
-  const currProgress = (currTotalSec / totalTime) * 100
-  return currProgress
+  const currProgress = (currTotalSec / totalTime) * 100;
+  return currProgress;
 }
 
-export { AirHockeyPageSetup }
-
+export { AirHockeyPageSetup };
