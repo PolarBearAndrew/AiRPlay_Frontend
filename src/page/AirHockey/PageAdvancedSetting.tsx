@@ -8,6 +8,7 @@ import { MdPlayArrow, MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import getDataModel from "./DataModel";
+import errorToast from "../../components/Toast";
 
 const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue, setPlayerCircleSize}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number,setPlayerCircleSize:{(value: number): void}}) => (
   <VStack paddingTop="4" paddingBottom="4" spacing="8">
@@ -92,17 +93,39 @@ const AirHockeyPageAdvancedSetting = () => {
                 <AdvancedSettingSliderBox
                   name={"Ball Size"}
                   ariaLabel={"ball-size-slider"}
-                  defaultValue={20}
+                  defaultValue={airHockeyGameData.ballRadius*10}
                   onChangeEndFunc={(val) => {
                     console.log("Ball Size: " + val);
+                    airHockeyDataModel.setBallRadius(val/10);
                   }}
                 />
                 <AdvancedSettingSliderBox
                   name={"Ball Speed"}
                   ariaLabel={"ball-speed-slider"}
-                  defaultValue={10}
+                  defaultValue={airHockeyGameData.ballSpeed*10}
                   onChangeEndFunc={(val) => {
                     console.log("Ball Speed: " + val);
+                    airHockeyDataModel.setBallSpeed(val/10);
+                  }}
+                />Goal
+                <AdvancedSettingSliderBox
+                  name={"Goal size"}
+                  ariaLabel={"goal-size-slider"}
+                  defaultValue={airHockeyGameData.goalSize*10}
+                  max = {50}
+                  step = {10}
+                  onChangeEndFunc={(val) => {
+                    console.log("Goal size: " + val);
+                    airHockeyDataModel.setGoalSize(val/10);
+                  }}
+                />
+                <AdvancedSettingSliderBox
+                  name={"Friction"}
+                  ariaLabel={"friction-slider"}
+                  defaultValue={airHockeyGameData.friction*10}
+                  onChangeEndFunc={(val) => {
+                    console.log("Goal size: " + val);
+                    airHockeyDataModel.setGoalSize(val/10);
                   }}
                 />
                 <AdvancedSettingSliderBox
@@ -111,6 +134,7 @@ const AirHockeyPageAdvancedSetting = () => {
                   defaultValue={40}
                   onChangeEndFunc={(val) => {
                     console.log("Circle elasticity: " + val);
+                    errorToast("Function not implemented","Coming soon");
                   }}
                 />
                 <AdvancedSettingSliderBox
@@ -119,6 +143,7 @@ const AirHockeyPageAdvancedSetting = () => {
                   defaultValue={20}
                   onChangeEndFunc={(val) => {
                     console.log("Boundary elasticity: " + val);
+                    errorToast("Function not implemented","Coming soon");
                   }}
                 />
                 <AdvancedSettingSliderBox
@@ -127,6 +152,7 @@ const AirHockeyPageAdvancedSetting = () => {
                   defaultValue={30}
                   onChangeEndFunc={(val) => {
                     console.log("Text size: " + val);
+                    errorToast("Function not implemented","Coming soon");
                   }}
                 />
               </VStack>
