@@ -54,7 +54,7 @@ const AirHockeyPageAdvancedSetting = () => {
     <VStack width={{ base: "full", sm: "390px" }} paddingBottom="8">
       {/* preview */}
       <VStack px="12" spacing="8" w="full">
-        <Flex position="fixed" bg="white" zIndex="10" w="full" flexDir="column" alignItems="center" top="20" px="12" gap="4" paddingBottom="4" >
+        <Flex position="fixed" bg="white" zIndex="10" w="full" flexDir="column" alignItems="center" top="16" px="12" gap="4" paddingBottom="4" >
           <Text fontSize="3xl" fontWeight="700" textAlign="center">
             Advanced Setting
           </Text>
