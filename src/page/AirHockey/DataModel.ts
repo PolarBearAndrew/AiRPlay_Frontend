@@ -30,6 +30,10 @@ class DataModel{
     }  
   }
 
+  unsubscribeToUpdate = (callback:()=>void) => {
+    this.subscribers = this.subscribers.filter((sub)=>sub!== callback)  
+  }
+
   constructor(){
     this.airHockeyGameData = {
       ballSpeed: 3,
