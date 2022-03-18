@@ -1,5 +1,5 @@
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, IconButton, LinkBox, LinkOverlay } from "@chakra-ui/react";
-import { SimpleGrid, Box, Flex, Spacer, Center, Circle, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Center, Circle, Text, VStack } from "@chakra-ui/react";
 import { MdNavigateNext } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
 interface SliderParameter {

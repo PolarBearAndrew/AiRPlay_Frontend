@@ -73,9 +73,9 @@ function AirHockeyPageSetup() {
                         w="24"
                         leftIcon={<MdPlayArrow />}
                         colorScheme="yellow"
-                        variant="outline"
+                        variant="solid"
                         onClick={() => {
-                          setMyStep(2);
+                          setMyStep(3);
                           start()}}
                       >
                         Start
@@ -85,11 +85,11 @@ function AirHockeyPageSetup() {
                             w="24"
                             leftIcon={<MdOutlineRestartAlt />}
                             colorScheme="yellow"
-                            variant="outline"
+                            variant="solid"
                             onClick={() => {
                               const time = new Date();
                               time.setSeconds(time.getSeconds() + totalSeconds);
-                              setMyStep(2);
+                              setMyStep(3);
                               restart(time)}}
                           >
                             Restart
@@ -99,9 +99,9 @@ function AirHockeyPageSetup() {
                             w="24"
                             leftIcon={<MdOutlineRestartAlt />}
                             colorScheme="yellow"
-                            variant="outline"
+                            variant="solid"
                             onClick={() => {
-                              setMyStep(2);
+                              setMyStep(3);
                               resume()}}
                           >
                             Resume
