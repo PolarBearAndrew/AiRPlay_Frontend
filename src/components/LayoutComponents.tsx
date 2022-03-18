@@ -1,5 +1,4 @@
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, IconButton, LinkBox, LinkOverlay, useDisclosure } from "@chakra-ui/react";
-import { Box, Flex, Spacer, Center, Circle, Text, VStack } from "@chakra-ui/react";
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, IconButton, LinkBox, LinkOverlay, useDisclosure, Box, Flex, Spacer, Center, Circle, Text, VStack, Icon } from "@chakra-ui/react";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react'
 import React from "react";
 import { MdNavigateNext } from "react-icons/md";
@@ -60,7 +59,7 @@ export const SettingLinkBox = ({ name, link, ariaLabel, colorScheme, textColor }
           </Text>
         </Box>
         <LinkOverlay h="4" as={RouterLink} to={link}>
-          <IconButton variant="link" colorScheme={colorScheme ? colorScheme : "black"} aria-label={ariaLabel} icon={<MdNavigateNext />} size="lg" />
+          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme ? colorScheme : "black"}/>
         </LinkOverlay>
       </Flex>
     </LinkBox>
@@ -84,7 +83,7 @@ export const SettingClickBox = ({ name, callback, ariaLabel, colorScheme, textCo
             {name}
           </Text>
         </Box>
-          <IconButton variant="link" colorScheme={colorScheme ? colorScheme : "black"} aria-label={ariaLabel} icon={<MdNavigateNext />} size="lg" />
+          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme ? colorScheme : "black"}/>
       </Flex>
   );
 }
@@ -107,7 +106,7 @@ export const SettingTutorialModal = ({ name, ariaLabel, colorScheme, textColor }
               {name}
             </Text>
           </Box>
-            <IconButton variant="link" colorScheme={colorScheme ? colorScheme : "black"} aria-label={ariaLabel} icon={<MdNavigateNext />} size="lg" />
+          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme ? colorScheme : "black"}/>
         </Flex>
 
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size="xs">
