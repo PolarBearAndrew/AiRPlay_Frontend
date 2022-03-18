@@ -6,6 +6,7 @@ import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerCo
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { MdNavigateNext } from "react-icons/md";
+import { SettingLinkBox } from "./LayoutComponents";
 
 function NavBar() {
   return (
@@ -40,34 +41,10 @@ function DrawerMenu() {
           <DrawerHeader />
           <DrawerBody paddingY="12">
             <Flex h="20" align="center" w="full">
-              <Link to="/">
-                <Box w="100px" h="4" textAlign="left">
-                  <Text fontSize="ml" fontWeight="700">
-                    Play a game
-                  </Text>
-                </Box>
-              </Link>
-              <Spacer />
-              <Link to="/">
-                <Box w="32px" h="4">
-                  <IconButton variant="link" colorScheme="#000000" aria-label="Advanced setting" icon={<MdNavigateNext />} size="lg" />
-                </Box>
-              </Link>
+              <SettingLinkBox name="Play a game" link = "/" ariaLabel="home-page"/>
             </Flex>
             <Flex h="20" align="center" w="full">
-              <Link to="/">
-                <Box w="100px" h="4" textAlign="left">
-                  <Text fontSize="ml" fontWeight="700">
-                    About iGYM
-                  </Text>
-                </Box>
-              </Link>
-              <Spacer />
-              <Link to="/">
-                <Box w="32px" h="4">
-                  <IconButton variant="link" colorScheme="#000000" aria-label="Advanced setting" icon={<MdNavigateNext />} size="lg" />
-                </Box>
-              </Link>
+              <SettingLinkBox name="About iGYM" link = "/" ariaLabel="home-page"/>
             </Flex>
           </DrawerBody>
           <DrawerFooter />
