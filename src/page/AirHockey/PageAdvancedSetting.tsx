@@ -51,14 +51,14 @@ const AirHockeyPageAdvancedSetting = () => {
   }, [airHockeyDataModel]);
 
   return (
-    <VStack width={{ base: "full", sm: "390px" }} spacing="1" paddingBottom="8">
+    <VStack width={{ base: "full", sm: "390px" }} paddingBottom="8">
       {/* preview */}
-      <VStack p="4" px="12" spacing="8" w="full">
-        <Flex position="fixed" bg="white" zIndex="10" w="full" flexDir="column" alignItems="center" top="60px">
+      <VStack px="12" spacing="8" w="full">
+        <Flex position="fixed" bg="white" zIndex="10" w="full" flexDir="column" alignItems="center" top="20" px="12" gap="4" paddingBottom="4" >
           <Text fontSize="3xl" fontWeight="700" textAlign="center">
             Advanced Setting
           </Text>
-          <SimpleGrid w={{ base: "full", sm: "340px" }} columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
+          <SimpleGrid w={{ base: "full", sm: "340px" }} columns={2} spacing="0" borderWidth="medium" borderColor="#000000" >
             <Center bg="gray.200" height="100" fontSize="xx-large">
               <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
                 <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
@@ -89,7 +89,7 @@ const AirHockeyPageAdvancedSetting = () => {
             </Center>
           </SimpleGrid>
         </Flex>
-        <Box w="full" h="230px" />
+        <Box w="full" h="300" />
         {/* court setting */}
         <Accordion w="full" defaultIndex={[0]} allowMultiple>
           <AccordionItem paddingY={2}>
