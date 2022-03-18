@@ -1,5 +1,7 @@
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, IconButton, LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, IconButton, LinkBox, LinkOverlay, useDisclosure } from "@chakra-ui/react";
 import { Box, Flex, Spacer, Center, Circle, Text, VStack } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react'
+import React from "react";
 import { MdNavigateNext } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
 interface SliderParameter {
@@ -85,4 +87,47 @@ export const SettingClickBox = ({ name, callback, ariaLabel, colorScheme, textCo
           <IconButton variant="link" colorScheme={colorScheme ? colorScheme : "black"} aria-label={ariaLabel} icon={<MdNavigateNext />} size="lg" />
       </Flex>
   );
-};
+}
+
+interface SettingTutorialModalParameter {
+  name: string;
+  ariaLabel: string;
+  colorScheme?: string;
+  textColor?: string;
+}
+
+export const SettingTutorialModal = ({ name, ariaLabel, colorScheme, textColor }: SettingTutorialModalParameter) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  
+  return (
+      <VStack w="full">
+        <Flex as='button' h="4" w="full" justify={"space-between"} onClick={onOpen}>
+          <Box h="4" textAlign="left">
+            <Text fontSize="ml" fontWeight="700" textColor={textColor ? textColor : "black"}>
+              {name}
+            </Text>
+          </Box>
+            <IconButton variant="link" colorScheme={colorScheme ? colorScheme : "black"} aria-label={ariaLabel} icon={<MdNavigateNext />} size="lg" />
+        </Flex>
+
+        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size="xs">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Tutorial</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              What should we put in the tutorial
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+
+            </ModalBody>
+
+            <ModalFooter />
+          </ModalContent>
+        </Modal>
+      </VStack> 
+  );
+}

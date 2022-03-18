@@ -7,7 +7,7 @@ import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from "@chakra-ui/
 import { MdPlayArrow, MdOutlineVolumeUp, MdPause, MdKeyboardArrowLeft, MdOutlineRestartAlt } from "react-icons/md";
 import { useTimer } from "react-timer-hook";
 import getDataModel from "./DataModel";
-import { SettingClickBox, SettingLinkBox } from "../../components/LayoutComponents";
+import { SettingClickBox, SettingLinkBox, SettingTutorialModal } from "../../components/LayoutComponents";
 import { Link } from "react-router-dom";
 
 function AirHockeyPageSetup() {
@@ -129,10 +129,10 @@ function AirHockeyPageSetup() {
           </Box>
         </Flex>
         <SettingLinkBox name = "Setting" link = "/airhockey/setting" ariaLabel="Advanced setting"/>
-        <SettingLinkBox name = "Tutorial" link = "/" ariaLabel="Tutorial"/>
+        <SettingTutorialModal name="Tutorial" ariaLabel="Tutorial" />
         <SettingClickBox name = "Recapture Background" callback={()=>{airHockeyDataModel.setCapture();}}  ariaLabel="recapture-background"/>
         <Spacer h="4px" />
-        <Link to="/airhockey/setup">
+        <Link to="/">
           <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="red" variant="outline">
             Exit
           </Button>
