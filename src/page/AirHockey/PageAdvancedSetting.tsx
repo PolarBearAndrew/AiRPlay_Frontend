@@ -210,7 +210,7 @@ const AirHockeyPageAdvancedSetting = () => {
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
-        <Link to="/">
+        <Link to="/airhockey/setup">
           <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="yellow" variant="outline">
             Back
           </Button>
