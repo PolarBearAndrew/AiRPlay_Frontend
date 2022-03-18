@@ -179,8 +179,12 @@ const AirHockeyPageAdvancedSetting = () => {
                       playerCircleSizeDefaultValue={airHockeyGameData.noCNTLRadius*10} 
                       expansionSizeDefaultValue={30} 
                       expansionSpeedDefaultValue={40} 
-                      setPlayerCircleSize={(val)=>{airHockeyDataModel.setNoCNTLRadius(val/10)}}
-                      setExpansionSize={(val)=>{airHockeyDataModel.setNoCNTLExpansionSize(val/10)}} />
+                      // setPlayerCircleSize={(val)=>{airHockeyDataModel.setNoCNTLRadius(val/10)}}
+                      setPlayerCircleSize={(val)=>{airHockeyDataModel.setButtonSpeed(val/10)}}
+                      // setExpansionSize={(val)=>{airHockeyDataModel.setNoCNTLExpansionSize(val/10)}}
+                      setExpansionSize={(val)=>{console.log("No Controller PlayerExpansion Size: " + val);
+                      errorToast("Function not implemented","Coming soon");}}
+                      />
                   </TabPanel>
 
                   <TabPanel>
@@ -188,8 +192,12 @@ const AirHockeyPageAdvancedSetting = () => {
                       playerCircleSizeDefaultValue={airHockeyGameData.CNTLRadius*10} 
                       expansionSizeDefaultValue={30} 
                       expansionSpeedDefaultValue={40} 
-                      setPlayerCircleSize={(val)=>{airHockeyDataModel.setCNTLRadius(val/10)}}
-                      setExpansionSize={(val)=>{airHockeyDataModel.setCNTLExpansionSize(val/10)}} />
+                      // setPlayerCircleSize={(val)=>{airHockeyDataModel.setCNTLRadius(val/10)}}
+                      setPlayerCircleSize={(val)=>{airHockeyDataModel.setButtonSpeed(val/10)}}
+                      // setExpansionSize={(val)=>{airHockeyDataModel.setCNTLExpansionSize(val/10)}} 
+                      setExpansionSize={(val)=>{console.log("With Controller PlayerExpansion Size: " + val);
+                      errorToast("Function not implemented","Coming soon");}}
+                      />
                   </TabPanel>
                 </TabPanels>
               </Tabs>

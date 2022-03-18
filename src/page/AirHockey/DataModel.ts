@@ -106,53 +106,53 @@ class DataModel{
     }
   }
 
-  setNoCNTLRadius = (val: number)=>{
-    this.airHockeyGameData.noCNTLRadius = val;
-    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
-    if(echoClient.readyState === echoClient.OPEN){
-      echoClient.send("NOCNTLRADIUS");
-      echoClient.send(this.airHockeyGameData.noCNTLRadius);
-    }else{
-      errorToast("Server Not Connected","Pleas check server");
-    }
-    this.updateSubscribers();
-  }
+  // setNoCNTLRadius = (val: number)=>{
+  //   this.airHockeyGameData.noCNTLRadius = val;
+  //   // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+  //   if(echoClient.readyState === echoClient.OPEN){
+  //     echoClient.send("NOCNTLRADIUS");
+  //     echoClient.send(this.airHockeyGameData.noCNTLRadius);
+  //   }else{
+  //     errorToast("Server Not Connected","Pleas check server");
+  //   }
+  //   this.updateSubscribers();
+  // }
 
-  setCNTLRadius = (val: number)=>{
-    this.airHockeyGameData.CNTLRadius = val;
-    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
-    if(echoClient.readyState === echoClient.OPEN){
-      echoClient.send("CNTLRADIUS");
-      echoClient.send(this.airHockeyGameData.CNTLRadius);
-    }else{
-      errorToast("Server Not Connected","Pleas check server");
-    }
-    this.updateSubscribers();
-  }
+  // setCNTLRadius = (val: number)=>{
+  //   this.airHockeyGameData.CNTLRadius = val;
+  //   // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+  //   if(echoClient.readyState === echoClient.OPEN){
+  //     echoClient.send("CNTLRADIUS");
+  //     echoClient.send(this.airHockeyGameData.CNTLRadius);
+  //   }else{
+  //     errorToast("Server Not Connected","Pleas check server");
+  //   }
+  //   this.updateSubscribers();
+  // }
 
-  setNoCNTLExpansionSize = (val: number)=>{
-    this.airHockeyGameData.noCNTLExpansionSize = val;
-    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
-    if(echoClient.readyState === echoClient.OPEN){
-      echoClient.send("NOCNTLEXPANSIONSIZE");
-      echoClient.send(this.airHockeyGameData.noCNTLExpansionSize);
-    }else{
-      errorToast("Server Not Connected","Pleas check server");
-    }
-    this.updateSubscribers();
-  }
+  // setNoCNTLExpansionSize = (val: number)=>{
+  //   this.airHockeyGameData.noCNTLExpansionSize = val;
+  //   // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+  //   if(echoClient.readyState === echoClient.OPEN){
+  //     echoClient.send("NOCNTLEXPANSIONSIZE");
+  //     echoClient.send(this.airHockeyGameData.noCNTLExpansionSize);
+  //   }else{
+  //     errorToast("Server Not Connected","Pleas check server");
+  //   }
+  //   this.updateSubscribers();
+  // }
 
-  setCNTLExpansionSize = (val: number)=>{
-    this.airHockeyGameData.CNTLExpansionSize = val;
-    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
-    if(echoClient.readyState === echoClient.OPEN){
-      echoClient.send("CNTLEXPANSIONSIZE");
-      echoClient.send(this.airHockeyGameData.CNTLExpansionSize);
-    }else{
-      errorToast("Server Not Connected","Pleas check server");
-    }
-    this.updateSubscribers();
-  }
+  // setCNTLExpansionSize = (val: number)=>{
+  //   this.airHockeyGameData.CNTLExpansionSize = val;
+  //   // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+  //   if(echoClient.readyState === echoClient.OPEN){
+  //     echoClient.send("CNTLEXPANSIONSIZE");
+  //     echoClient.send(this.airHockeyGameData.CNTLExpansionSize);
+  //   }else{
+  //     errorToast("Server Not Connected","Pleas check server");
+  //   }
+  //   this.updateSubscribers();
+  // }
   
   setButtonSpeed = (val: number)=>{
     this.airHockeyGameData.buttonSpeed = val;
