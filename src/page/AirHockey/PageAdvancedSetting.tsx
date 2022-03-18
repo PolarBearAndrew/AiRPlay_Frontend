@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import getDataModel from "./DataModel";
 import errorToast from "../../components/Toast";
 
-const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue, setPlayerCircleSize}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number,setPlayerCircleSize:{(value: number): void}}) => (
+const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue, setPlayerCircleSize, setExpansionSize}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number,setPlayerCircleSize:{(value: number): void}, setExpansionSize:{(value: number): void}}) => (
   <VStack paddingY="4"spacing="8">
     <AdvancedSettingSliderBox
       name={"Player Circle Size"}
@@ -21,9 +21,7 @@ const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValu
       name={"Expansion size"}
       ariaLabel={"expansion-size"}
       defaultValue={expansionSizeDefaultValue}
-      onChangeEndFunc={(val) => {
-        console.log("Expansion size: " + val);
-      }}
+      onChangeEndFunc={setExpansionSize}
     />
     <AdvancedSettingSliderBox
       name={"Expansion speed"}
@@ -58,23 +56,31 @@ const AirHockeyPageAdvancedSetting = () => {
         </Box>
         <SimpleGrid w="full" columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.noCNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-              👋
+            <Circle size={airHockeyGameData.noCNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+              <Circle size={airHockeyGameData.noCNTLRadius*3+airHockeyGameData.noCNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                👋
+              </Circle>
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.noCNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-              👋 
+            <Circle size={airHockeyGameData.noCNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+              <Circle size={airHockeyGameData.noCNTLRadius*3+airHockeyGameData.noCNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                👋
+              </Circle>
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.CNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-              🕹️
+            <Circle size={airHockeyGameData.CNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+              <Circle size={airHockeyGameData.CNTLRadius*3+airHockeyGameData.CNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                🕹️
+              </Circle>
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.CNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-              🕹️
+            <Circle size={airHockeyGameData.CNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+              <Circle size={airHockeyGameData.CNTLRadius*3+airHockeyGameData.CNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                🕹️
+              </Circle>
             </Circle>
           </Center>
         </SimpleGrid>
@@ -169,15 +175,21 @@ const AirHockeyPageAdvancedSetting = () => {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.noCNTLRadius*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} setPlayerCircleSize={(val)=>{
-                      airHockeyDataModel.setNoCNTLRadius(val/10)
-                      }} />
+                    <TabPanelContent 
+                      playerCircleSizeDefaultValue={airHockeyGameData.noCNTLRadius*10} 
+                      expansionSizeDefaultValue={30} 
+                      expansionSpeedDefaultValue={40} 
+                      setPlayerCircleSize={(val)=>{airHockeyDataModel.setNoCNTLRadius(val/10)}}
+                      setExpansionSize={(val)=>{airHockeyDataModel.setNoCNTLExpansionSize(val/10)}} />
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.CNTLRadius*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} setPlayerCircleSize={(val)=>{
-                      airHockeyDataModel.setCNTLRadius(val/10)
-                      }}/>
+                  <TabPanelContent 
+                      playerCircleSizeDefaultValue={airHockeyGameData.CNTLRadius*10} 
+                      expansionSizeDefaultValue={30} 
+                      expansionSpeedDefaultValue={40} 
+                      setPlayerCircleSize={(val)=>{airHockeyDataModel.setCNTLRadius(val/10)}}
+                      setExpansionSize={(val)=>{airHockeyDataModel.setCNTLExpansionSize(val/10)}} />
                   </TabPanel>
                 </TabPanels>
               </Tabs>

@@ -11,6 +11,8 @@ interface AirHockeyGameData{
   // bounciness,
   noCNTLRadius: number,
   CNTLRadius: number,
+  noCNTLExpansionSize: number,
+  CNTLExpansionSize: number,
 }
 
 const echoClient = new W3CWebsocket('ws://localhost:8080/echo');
@@ -35,8 +37,10 @@ class DataModel{
       goalSize: 5,
       friction: 3,
       buttonSpeed: 3,
-      noCNTLRadius: 12,
-      CNTLRadius: 12,
+      noCNTLRadius: 1,
+      CNTLRadius: 1,
+      noCNTLExpansionSize: 1,
+      CNTLExpansionSize: 1
     }
   }
 
@@ -120,6 +124,30 @@ class DataModel{
     if(echoClient.readyState === echoClient.OPEN){
       echoClient.send("CNTLRADIUS");
       echoClient.send(this.airHockeyGameData.CNTLRadius);
+    }else{
+      errorToast("Server Not Connected","Pleas check server");
+    }
+    this.updateSubscribers();
+  }
+
+  setNoCNTLExpansionSize = (val: number)=>{
+    this.airHockeyGameData.noCNTLExpansionSize = val;
+    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+    if(echoClient.readyState === echoClient.OPEN){
+      echoClient.send("NOCNTLEXPANSIONSIZE");
+      echoClient.send(this.airHockeyGameData.noCNTLExpansionSize);
+    }else{
+      errorToast("Server Not Connected","Pleas check server");
+    }
+    this.updateSubscribers();
+  }
+
+  setCNTLExpansionSize = (val: number)=>{
+    this.airHockeyGameData.CNTLExpansionSize = val;
+    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+    if(echoClient.readyState === echoClient.OPEN){
+      echoClient.send("CNTLEXPANSIONSIZE");
+      echoClient.send(this.airHockeyGameData.CNTLExpansionSize);
     }else{
       errorToast("Server Not Connected","Pleas check server");
     }
