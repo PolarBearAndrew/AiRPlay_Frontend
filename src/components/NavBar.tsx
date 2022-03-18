@@ -9,7 +9,7 @@ import { MdNavigateNext } from "react-icons/md";
 
 function NavBar() {
   return (
-    <Flex w="full" p="2" h="16" bg="white" justify="space-between" position="fixed">
+    <Flex w="full" p="2" h="16" bg="white" justify="space-between" position="fixed" bgColor="white" zIndex="99">
       <Center w="20" h="12">
         <Link to="/">
           <Image h="4" src={logo} />

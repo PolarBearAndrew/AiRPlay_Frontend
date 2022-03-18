@@ -40,7 +40,7 @@ function AirHockeyPageSetup() {
   const airHockeyDataModel = getDataModel();
 
   return (
-    <VStack width="full" spacing="1" paddingBottom="8">
+    <VStack width={{base:"full", sm:"390px"}} spacing="1" paddingBottom="8">
       <Box w="full" h="16" />
       {/* progress bar */}
       <ProgressBar Step={myStep} />

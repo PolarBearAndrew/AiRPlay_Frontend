@@ -16,7 +16,7 @@ interface RootProps {
 
 function Root(props: RootProps) {
   return (
-    <VStack width='390px' spacing='1' paddingBottom='8'>
+    <VStack spacing='1' paddingBottom='8'>
       {props.children}
     </VStack>
   )

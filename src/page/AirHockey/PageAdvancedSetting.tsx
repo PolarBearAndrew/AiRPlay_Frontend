@@ -1,4 +1,4 @@
-import { SimpleGrid, Box, Center, Circle, Text, VStack } from "@chakra-ui/react";
+import { SimpleGrid, Box, Center, Circle, Text, VStack, Flex } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { AdvancedSettingSliderBox } from "../../components/LayoutComponents";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from "@chakra-ui/react";
@@ -45,51 +45,51 @@ const AirHockeyPageAdvancedSetting = () => {
       setAirHockeyGameData(airHockeyDataModel.getAirHockeyGameDataCopy());
     };
     airHockeyDataModel.subscribeToUpdate(airHockeyAdvancedSettingUpdateFunction);
-    return ()=>{
-      airHockeyDataModel.unsubscribeToUpdate(airHockeyAdvancedSettingUpdateFunction)
-    }
+    return () => {
+      airHockeyDataModel.unsubscribeToUpdate(airHockeyAdvancedSettingUpdateFunction);
+    };
   }, [airHockeyDataModel]);
 
   return (
-    <VStack width="390px" spacing="1" paddingBottom="8">
-      <Box w="full" h="16" />
+    <VStack width={{ base: "full", sm: "390px" }} spacing="1" paddingBottom="8">
       {/* preview */}
       <VStack p="4" px="12" spacing="8" w="full">
-        <Box w="full" h="8" textAlign="center">
-          <Text fontSize="3xl" fontWeight="700">
+        <Flex position="fixed" bg="white" zIndex="10" w="full" flexDir="column" alignItems="center" top="60px">
+          <Text fontSize="3xl" fontWeight="700" textAlign="center">
             Advanced Setting
           </Text>
-        </Box>
-        <SimpleGrid w="full" columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
-          <Center bg="gray.200" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-              <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-                👋
+          <SimpleGrid w={{ base: "full", sm: "340px" }} columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
+            <Center bg="gray.200" height="100" fontSize="xx-large">
+              <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+                <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                  👋
+                </Circle>
               </Circle>
-            </Circle>
-          </Center>
-          <Center bg="gray.200" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-              <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-                👋
+            </Center>
+            <Center bg="gray.200" height="100" fontSize="xx-large">
+              <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+                <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                  👋
+                </Circle>
               </Circle>
-            </Circle>
-          </Center>
-          <Center bg="gray.200" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-              <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-                🕹️
+            </Center>
+            <Center bg="gray.200" height="100" fontSize="xx-large">
+              <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+                <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                  🕹️
+                </Circle>
               </Circle>
-            </Circle>
-          </Center>
-          <Center bg="gray.200" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-              <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
-                🕹️
+            </Center>
+            <Center bg="gray.200" height="100" fontSize="xx-large">
+              <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
+                <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+                  🕹️
+                </Circle>
               </Circle>
-            </Circle>
-          </Center>
-        </SimpleGrid>
+            </Center>
+          </SimpleGrid>
+        </Flex>
+        <Box w="full" h="230px" />
         {/* court setting */}
         <Accordion w="full" defaultIndex={[0]} allowMultiple>
           <AccordionItem paddingY={2}>
@@ -188,11 +188,14 @@ const AirHockeyPageAdvancedSetting = () => {
                       // setPlayerCircleSize={(val)=>{airHockeyDataModel.setNoCNTLRadius(val/10)}}
                       setPlayerCircleSize={(val) => {
                         airHockeyDataModel.setButtonSpeed(val / 10);
+                        airHockeyDataModel.setNoCNTLRadius(val / 10);
                       }}
                       // setExpansionSize={(val)=>{airHockeyDataModel.setNoCNTLExpansionSize(val/10)}}
                       setExpansionSize={(val) => {
-                        console.log("No Controller PlayerExpansion Size: " + val);
+                        airHockeyDataModel.setNoCNTLExpansionSize(val / 10);
                         errorToast("Function not implemented", "Coming soon");
+                        // console.log("No Controller PlayerExpansion Size: " + val);
+                        // errorToast("Function not implemented", "Coming soon");
                       }}
                     />
                   </TabPanel>
@@ -205,11 +208,14 @@ const AirHockeyPageAdvancedSetting = () => {
                       // setPlayerCircleSize={(val)=>{airHockeyDataModel.setCNTLRadius(val/10)}}
                       setPlayerCircleSize={(val) => {
                         airHockeyDataModel.setButtonSpeed(val / 10);
+                        airHockeyDataModel.setCNTLRadius(val / 10);
                       }}
                       // setExpansionSize={(val)=>{airHockeyDataModel.setCNTLExpansionSize(val/10)}}
                       setExpansionSize={(val) => {
-                        console.log("With Controller PlayerExpansion Size: " + val);
+                        airHockeyDataModel.setCNTLExpansionSize(val / 10);
                         errorToast("Function not implemented", "Coming soon");
+                        // console.log("With Controller PlayerExpansion Size: " + val);
+                        // errorToast("Function not implemented", "Coming soon");
                       }}
                     />
                   </TabPanel>
