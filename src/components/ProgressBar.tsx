@@ -1,5 +1,4 @@
-import ProgressSeparator from '../comm/ProgressSeparator.svg';
-import { Box, Flex, Center, Image, Circle, VStack } from '@chakra-ui/react';
+import { Box, Flex, Center, Circle, VStack } from '@chakra-ui/react';
 import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 

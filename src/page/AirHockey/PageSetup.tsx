@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ProgressBar } from "../../components/ProgressBar";
-import { Box, Flex, LinkBox, LinkOverlay, Spacer, Text, useDisclosure, VStack } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Text, VStack } from "@chakra-ui/react";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
-import { Button, IconButton } from "@chakra-ui/react";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from "@chakra-ui/react";
-import { MdPlayArrow, MdNavigateNext, MdOutlineVolumeUp, MdPause } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { MdPlayArrow, MdOutlineVolumeUp, MdPause, MdKeyboardArrowLeft, MdOutlineRestartAlt } from "react-icons/md";
 import { useTimer } from "react-timer-hook";
 import getDataModel from "./DataModel";
 import { SettingClickBox, SettingLinkBox } from "../../components/LayoutComponents";
+import { Link } from "react-router-dom";
 
 function AirHockeyPageSetup() {
   const [myStep, setMyStep] = useState(2);
@@ -25,13 +24,13 @@ function AirHockeyPageSetup() {
   };
 
   const {
-    seconds, // next step - two digit
+    seconds,
     minutes,
     isRunning,
     start,
-    pause
-    // resume,
-    // restart,
+    pause,
+    resume,
+    restart,
   } = useTimer(timerConfig);
 
   const minutesSt = minutes + "";
@@ -69,21 +68,46 @@ function AirHockeyPageSetup() {
           >
             Pause
           </Button>
-        ) : (
-          <Button
-            w="24"
-            leftIcon={<MdPlayArrow />}
-            colorScheme="yellow"
-            variant="solid"
-            onClick={() => {
-              setMyStep(3);
-              start();
-              airHockeyDataModel.setStartStop();
-            }}
-          >
-            Play
-          </Button>
-        )}
+          ) : ( (totalSeconds == minutes*60 + seconds) ? (
+                      <Button
+                        w="24"
+                        leftIcon={<MdPlayArrow />}
+                        colorScheme="yellow"
+                        variant="outline"
+                        onClick={() => {
+                          setMyStep(2);
+                          start()}}
+                      >
+                        Start
+                      </Button>
+                ) : ( (minutes < 1) && (seconds < 1 ) ? (
+                          <Button
+                            w="24"
+                            leftIcon={<MdOutlineRestartAlt />}
+                            colorScheme="yellow"
+                            variant="outline"
+                            onClick={() => {
+                              const time = new Date();
+                              time.setSeconds(time.getSeconds() + totalSeconds);
+                              setMyStep(2);
+                              restart(time)}}
+                          >
+                            Restart
+                          </Button>
+                    ) : (
+                          <Button
+                            w="24"
+                            leftIcon={<MdOutlineRestartAlt />}
+                            colorScheme="yellow"
+                            variant="outline"
+                            onClick={() => {
+                              setMyStep(2);
+                              resume()}}
+                          >
+                            Resume
+                          </Button>
+                        )))
+        }
         {/* <Button onClick={() => setMyStep((previousVal) => (previousVal + 1))}>Next step</Button> */}
         <Spacer />
         <Flex h="4" align="center" w="full">
@@ -107,7 +131,12 @@ function AirHockeyPageSetup() {
         <SettingLinkBox name = "Setting" link = "/airhockey/setting" ariaLabel="Advanced setting"/>
         <SettingLinkBox name = "Tutorial" link = "/" ariaLabel="Tutorial"/>
         <SettingClickBox name = "Recapture Background" callback={()=>{airHockeyDataModel.setCapture();}}  ariaLabel="recapture-background"/>
-        <SettingLinkBox name = "Exit" link = "/" ariaLabel="Exit" colorScheme="red" textColor="red"/>
+        <Spacer h="4px" />
+        <Link to="/airhockey/setup">
+          <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="red" variant="outline">
+            Exit
+          </Button>
+        </Link>
       </VStack>
     </VStack>
   );

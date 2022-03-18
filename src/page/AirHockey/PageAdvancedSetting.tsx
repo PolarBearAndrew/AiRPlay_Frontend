@@ -48,6 +48,7 @@ const AirHockeyPageAdvancedSetting = () => {
 
   return (
     <VStack width="390px" spacing="1" paddingBottom="8">
+
       {/* preview */}
       <VStack p="4" px="12" spacing="8" w="full">
         <Box w="full" h="8" textAlign="center">
