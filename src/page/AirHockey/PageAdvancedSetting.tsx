@@ -55,28 +55,28 @@ const AirHockeyPageAdvancedSetting = () => {
           </Text>
         </Box>
         <SimpleGrid w="full" columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
-          <Center bg="gray.300" height="100" fontSize="xx-large">
+          <Center bg="gray.200" height="100" fontSize="xx-large">
             <Circle size={airHockeyGameData.noCNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
               <Circle size={airHockeyGameData.noCNTLRadius*3+airHockeyGameData.noCNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
                 👋
               </Circle>
             </Circle>
           </Center>
-          <Center bg="gray.300" height="100" fontSize="xx-large">
+          <Center bg="gray.200" height="100" fontSize="xx-large">
             <Circle size={airHockeyGameData.noCNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
               <Circle size={airHockeyGameData.noCNTLRadius*3+airHockeyGameData.noCNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
                 👋
               </Circle>
             </Circle>
           </Center>
-          <Center bg="gray.300" height="100" fontSize="xx-large">
+          <Center bg="gray.200" height="100" fontSize="xx-large">
             <Circle size={airHockeyGameData.CNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
               <Circle size={airHockeyGameData.CNTLRadius*3+airHockeyGameData.CNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
                 🕹️
               </Circle>
             </Circle>
           </Center>
-          <Center bg="gray.300" height="100" fontSize="xx-large">
+          <Center bg="gray.200" height="100" fontSize="xx-large">
             <Circle size={airHockeyGameData.CNTLRadius*3+40+"px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
               <Circle size={airHockeyGameData.CNTLRadius*3+airHockeyGameData.CNTLExpansionSize*4+40+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
                 🕹️
