@@ -10,7 +10,7 @@ import getDataModel from "./DataModel";
 import errorToast from "../../components/Toast";
 
 const TabPanelContent = ({playerCircleSizeDefaultValue, expansionSizeDefaultValue, expansionSpeedDefaultValue, setPlayerCircleSize}:{playerCircleSizeDefaultValue:number,expansionSizeDefaultValue:number,expansionSpeedDefaultValue:number,setPlayerCircleSize:{(value: number): void}}) => (
-  <VStack paddingTop="4" paddingBottom="4" spacing="8">
+  <VStack paddingY="4"spacing="8">
     <AdvancedSettingSliderBox
       name={"Player Circle Size"}
       ariaLabel={"player-circle-size-slider"}
@@ -58,27 +58,27 @@ const AirHockeyPageAdvancedSetting = () => {
         </Box>
         <SimpleGrid w="full" columns={2} spacing="0" borderWidth="medium" borderColor="#000000">
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.noCNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               👋
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.noCNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               👋 
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.CNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🕹️
             </Circle>
           </Center>
           <Center bg="gray.300" height="100" fontSize="xx-large">
-            <Circle size={airHockeyGameData.buttonSpeed*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+            <Circle size={airHockeyGameData.CNTLRadius*10+"px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
               🕹️
             </Circle>
           </Center>
         </SimpleGrid>
-        {/* Advanced setting */}
+        {/* court setting */}
         <Accordion w="full" defaultIndex={[0]} allowMultiple>
           <AccordionItem paddingY={2}>
             <AccordionButton>
@@ -149,7 +149,7 @@ const AirHockeyPageAdvancedSetting = () => {
               </VStack>
             </AccordionPanel>
           </AccordionItem>
-
+          {/* controller settings */}
           <AccordionItem paddingY={2}>
             <AccordionButton>
               <Box flex="1" textAlign="left" fontWeight="bold">
@@ -169,21 +169,21 @@ const AirHockeyPageAdvancedSetting = () => {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.buttonSpeed*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} setPlayerCircleSize={(val)=>{
-                      airHockeyDataModel.setButtonSpeed(val/10)
+                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.noCNTLRadius*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={40} setPlayerCircleSize={(val)=>{
+                      airHockeyDataModel.setNoCNTLRadius(val/10)
                       }} />
                   </TabPanel>
 
                   <TabPanel>
-                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.buttonSpeed*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} setPlayerCircleSize={(val)=>{
-                      airHockeyDataModel.setButtonSpeed(val/10)
+                    <TabPanelContent playerCircleSizeDefaultValue={airHockeyGameData.CNTLRadius*10} expansionSizeDefaultValue={30} expansionSpeedDefaultValue={20} setPlayerCircleSize={(val)=>{
+                      airHockeyDataModel.setCNTLRadius(val/10)
                       }}/>
                   </TabPanel>
                 </TabPanels>
               </Tabs>
             </AccordionPanel>
           </AccordionItem>
-
+          {/* developer mode */}
           <AccordionItem paddingY={2}>
             <AccordionButton>
               <Box flex="1" textAlign="left" fontWeight="bold">
@@ -198,7 +198,7 @@ const AirHockeyPageAdvancedSetting = () => {
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
-        <Link to="/airhockey/setup">
+        <Link to="/">
           <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="yellow" variant="outline">
             Back
           </Button>

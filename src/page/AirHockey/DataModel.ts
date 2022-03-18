@@ -8,7 +8,9 @@ interface AirHockeyGameData{
   buttonSpeed: number, // maxspeedofexpansion, maxholdtimeofcircle (Circle Expansion Speed 3 1-10)
   // capture: number,   // (Recapture background)
   // startStop: number, // (START/STOP bool)
-  // boundaryelasticity
+  // bounciness,
+  noCNTLRadius: number,
+  CNTLRadius: number,
 }
 
 const echoClient = new W3CWebsocket('ws://localhost:8080/echo');
@@ -33,6 +35,8 @@ class DataModel{
       goalSize: 5,
       friction: 3,
       buttonSpeed: 3,
+      noCNTLRadius: 12,
+      CNTLRadius: 12,
     }
   }
 
@@ -80,18 +84,6 @@ class DataModel{
     this.updateSubscribers();
   }
 
-  setButtonSpeed = (val: number)=>{
-    this.airHockeyGameData.buttonSpeed = val;
-    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
-    if(echoClient.readyState === echoClient.OPEN){
-      echoClient.send("BUTTONSPEED");
-      echoClient.send(this.airHockeyGameData.buttonSpeed);
-    }else{
-      errorToast("Server Not Connected","Pleas check server");
-    }
-    this.updateSubscribers();
-  }
-
   setCapture = () =>{
     if(echoClient.readyState === echoClient.OPEN){
       echoClient.send("CAPTURE");
@@ -108,6 +100,42 @@ class DataModel{
     }else{
       errorToast("Server Not Connected","Pleas check server");
     }
+  }
+
+  setNoCNTLRadius = (val: number)=>{
+    this.airHockeyGameData.noCNTLRadius = val;
+    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+    if(echoClient.readyState === echoClient.OPEN){
+      echoClient.send("NOCNTLRADIUS");
+      echoClient.send(this.airHockeyGameData.noCNTLRadius);
+    }else{
+      errorToast("Server Not Connected","Pleas check server");
+    }
+    this.updateSubscribers();
+  }
+
+  setCNTLRadius = (val: number)=>{
+    this.airHockeyGameData.CNTLRadius = val;
+    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+    if(echoClient.readyState === echoClient.OPEN){
+      echoClient.send("CNTLRADIUS");
+      echoClient.send(this.airHockeyGameData.CNTLRadius);
+    }else{
+      errorToast("Server Not Connected","Pleas check server");
+    }
+    this.updateSubscribers();
+  }
+  
+  setButtonSpeed = (val: number)=>{
+    this.airHockeyGameData.buttonSpeed = val;
+    // console.log("Data model setButtonSpeed: "+ this.airHockeyGameData.buttonSpeed)
+    if(echoClient.readyState === echoClient.OPEN){
+      echoClient.send("BUTTONSPEED");
+      echoClient.send(this.airHockeyGameData.buttonSpeed);
+    }else{
+      errorToast("Server Not Connected","Pleas check server");
+    }
+    this.updateSubscribers();
   }
 
   getAirHockeyGameDataCopy = ():AirHockeyGameData => {
