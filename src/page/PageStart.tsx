@@ -9,7 +9,7 @@ function PageStart() {
   return (
   
     <VStack width='390px' spacing='1' paddingBottom='8'>
-      <Box h='1' />
+      <Box w="full" h="16" />
       {/* progress bar */}
       <ProgressBar Step={1}/>
       {/* game selection */}
