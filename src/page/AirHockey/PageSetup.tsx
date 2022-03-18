@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ProgressBar } from "../../components/ProgressBar";
-import { Box, Flex, Spacer, Text, VStack } from "@chakra-ui/react";
+import { Box, Center, Flex, Spacer, Text, VStack } from "@chakra-ui/react";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from "@chakra-ui/react";
@@ -43,9 +43,12 @@ function AirHockeyPageSetup() {
     <VStack width={{base:"full", sm:"390px"}} spacing="1" paddingBottom="8">
       <Box w="full" h="16" />
       {/* progress bar */}
-      <ProgressBar Step={myStep} />
+      <Center w="full" position="fixed" top="16" zIndex="10" bg="white">
+        <ProgressBar Step={2}/>
+      </Center>
       {/* game setup */}
-      <VStack p="4" px="12" spacing="8" w="full">
+      <VStack p="4" px="12" spacing="8" w="full" position="fixed">
+        <Box w="full" h="12"/>
         <Box w="full" h="8" textAlign="center">
           <Text fontSize="3xl" fontWeight="700">
             Air Hockey
@@ -111,6 +114,9 @@ function AirHockeyPageSetup() {
         }
         {/* <Button onClick={() => setMyStep((previousVal) => (previousVal + 1))}>Next step</Button> */}
         <Spacer />
+      </VStack>
+      <VStack spacing="8" px="12" >  
+        <Box w="full" h="420"/>
         <Flex h="4" align="center" w="full">
           <Box w="100px" h="4" textAlign="left">
             <Text fontSize="ml" fontWeight="700">

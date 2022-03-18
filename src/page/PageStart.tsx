@@ -11,9 +11,12 @@ function PageStart() {
     <VStack width={{base:"full", sm:"390px"}} spacing='1' paddingBottom='8'>
       <Box w="full" h="16" />
       {/* progress bar */}
-      <ProgressBar Step={1}/>
+      <Center w="full" position="fixed" top="16" zIndex="10" bg="white">
+        <ProgressBar Step={1}/>
+      </Center>
       {/* game selection */}
       <VStack p='4' px='12' spacing='8' w='full'>
+        <Box w="full" h="12" />
         <Box position='relative' w='full' h='200' rounded='12' overflow='hidden' boxShadow='sm'>
           <Link to='/airhockey/setup'>
             <Box position='absolute' w='full' h='200' rounded='12' overflow='hidden' boxShadow='sm' alignItems='center' verticalAlign='center'>
