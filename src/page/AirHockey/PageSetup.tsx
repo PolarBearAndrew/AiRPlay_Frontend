@@ -47,7 +47,7 @@ function AirHockeyPageSetup() {
         <ProgressBar Step={2}/>
       </Center>
       {/* game setup */}
-      <VStack p="4" px="12" spacing="8" w="full" position="fixed">
+      <VStack p="4" px="12" spacing="8" w="full" position="fixed" bg="white" zIndex={10}>
         <Box w="full" h="12"/>
         <Box w="full" h="8" textAlign="center">
           <Text fontSize="3xl" fontWeight="700">
@@ -113,7 +113,6 @@ function AirHockeyPageSetup() {
                         )))
         }
         {/* <Button onClick={() => setMyStep((previousVal) => (previousVal + 1))}>Next step</Button> */}
-        <Spacer />
       </VStack>
       <VStack spacing="8" px="12" >  
         <Box w="full" h="420"/>
