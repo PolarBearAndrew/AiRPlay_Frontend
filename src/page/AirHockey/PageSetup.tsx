@@ -43,8 +43,8 @@ function AirHockeyPageSetup() {
     <VStack width={{base:"full", sm:"390px"}} spacing="1" paddingBottom="8">
       <Box w="full" h="16" />
       {/* progress bar */}
-      <Center w="full" position="fixed" top="16" zIndex="10" bg="white">
-        <ProgressBar Step={2}/>
+      <Center w="full" position="fixed" top="16" zIndex="11" bg="white">
+        <ProgressBar Step={myStep}/>
       </Center>
       {/* game setup */}
       <VStack p="4" px="12" spacing="8" w="full" position="fixed" bg="white" zIndex={10}>
