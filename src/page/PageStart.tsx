@@ -11,7 +11,7 @@ function PageStart() {
     <VStack width={{base:"full", sm:"390px"}} spacing='1' paddingBottom='8'>
       <Box w="full" h="16" />
       {/* progress bar */}
-      <Center w="full" position="fixed" top="16" zIndex="10" bg={useColorModeValue("white","gray.800")}>
+      <Center w="full" position="fixed" top="14" zIndex="10" bg={useColorModeValue("white","gray.800")}>
         <ProgressBar Step={1}/>
       </Center>
       {/* game selection */}

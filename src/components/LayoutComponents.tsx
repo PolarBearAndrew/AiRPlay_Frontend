@@ -120,7 +120,7 @@ export const SettingTutorialModal = ({ name, ariaLabel, colorScheme, textColor }
           <ModalHeader>Tutorial</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            What should we put in the tutorial
+            Move and use the circle on the floor to hit the ball! Shoot at the goal!
             <br></br>
             <br></br>
             <br></br>

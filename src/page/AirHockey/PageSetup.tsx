@@ -50,7 +50,7 @@ function AirHockeyPageSetup() {
     <VStack width={{ base: "full", sm: "390px" }} spacing="1" paddingBottom="8">
       <Box w="full" h="16" />
       {/* progress bar */}
-      <Center w="full" position="fixed" top="16" zIndex="11" bg={useColorModeValue("white","gray.800")}>
+      <Center w="full" position="fixed" top="14" zIndex="11" bg={useColorModeValue("white","gray.800")}>
         <ProgressBar Step={myStep} />
       </Center>
       {/* game setup */}
@@ -180,10 +180,10 @@ function AirHockeyPageSetup() {
           <Box w="200px" h="4">
             <Slider aria-label="volume-slider" defaultValue={30} min={0} max={100} step={10}>
               <SliderTrack bg="gray.300">
-                <SliderFilledTrack bg="gray.900" />
+                <SliderFilledTrack bg={useColorModeValue( "gray.900", "blue.300")} />
               </SliderTrack>
               <SliderThumb boxSize={6}>
-                <Box color="gray.900" as={MdOutlineVolumeUp} />
+                <Box color={useColorModeValue( "gray.900", "blue.400")} as={MdOutlineVolumeUp} />
               </SliderThumb>
             </Slider>
           </Box>

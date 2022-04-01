@@ -10,7 +10,7 @@ import { ColorModeButton } from "./ColorMode";
 
 function NavBar() {
   return (
-    <Flex w="full" p="2" h="16" bg={useColorModeValue("white", "gray.900")} justify="space-between" position="fixed" bgColor={useColorModeValue("white", "gray.900")} zIndex="99">
+    <Flex w="full" p="2" h="16" bg={useColorModeValue("white", "gray.800")} justify="space-between" position="fixed" bgColor={useColorModeValue("white", "gray.800")} zIndex="99">
       <Center w="20" h="12">
         <Link to="/">
           <Image h="4" src={logo} />

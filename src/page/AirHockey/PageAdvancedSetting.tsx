@@ -230,7 +230,7 @@ const AirHockeyPageAdvancedSetting = () => {
             </AccordionButton>
             <AccordionPanel pb={4}>
               <Box paddingTop="4" paddingBottom="4">
-                What should we put in here? Videos for CV team.
+                Videos for CV team.
               </Box>
             </AccordionPanel>
           </AccordionItem>
