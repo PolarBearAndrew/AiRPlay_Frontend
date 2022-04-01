@@ -1,6 +1,4 @@
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, IconButton, LinkBox, LinkOverlay, useDisclosure, Box, Flex, Spacer, Center, Circle, Text, VStack, Icon } from "@chakra-ui/react";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react'
-import React from "react";
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, LinkBox, LinkOverlay, useDisclosure, Box, Flex, Spacer,Text, VStack, Icon, useColorModeValue, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import { MdNavigateNext } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
 interface SliderParameter {
@@ -15,9 +13,9 @@ interface SliderParameter {
 export const AdvancedSettingSliders = ({ ariaLabel, defaultValue, min, max, step, onChangeEndFunc }: SliderParameter) => (
   <Slider aria-label={ariaLabel} defaultValue={defaultValue} min={min || 0} max={max || 100} step={step || 10} onChangeEnd={onChangeEndFunc}>
     <SliderTrack bg="grey">
-      <SliderFilledTrack bg="#000000" />
+      <SliderFilledTrack bg = {useColorModeValue( "gray.900", "blue.300")} />
     </SliderTrack>
-    <SliderThumb boxSize="4" bg="#000000" />
+    <SliderThumb boxSize="4" bg={useColorModeValue( "gray.900", "blue.400")} />
   </Slider>
 );
 
@@ -54,18 +52,17 @@ export const SettingLinkBox = ({ name, link, ariaLabel, colorScheme, textColor }
     <LinkBox h="4" w="full">
       <Flex justify={"space-between"}>
         <Box h="4" textAlign="left">
-          <Text fontSize="ml" fontWeight="700" textColor={textColor ? textColor : "black"}>
+          <Text fontSize="ml" fontWeight="700" textColor={textColor || ""}>
             {name}
           </Text>
         </Box>
         <LinkOverlay h="4" as={RouterLink} to={link}>
-          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme ? colorScheme : "black"}/>
+          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme || ""} />
         </LinkOverlay>
       </Flex>
     </LinkBox>
   );
 };
-
 
 interface SettingClickBoxParameter {
   name: string;
@@ -77,16 +74,24 @@ interface SettingClickBoxParameter {
 
 export const SettingClickBox = ({ name, callback, ariaLabel, colorScheme, textColor }: SettingClickBoxParameter) => {
   return (
-      <Flex as='button' h="4" w="full" justify={"space-between"} onClick={()=>{callback();}}>
-        <Box h="4" textAlign="left">
-          <Text fontSize="ml" fontWeight="700" textColor={textColor ? textColor : "black"}>
-            {name}
-          </Text>
-        </Box>
-          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme ? colorScheme : "black"}/>
-      </Flex>
+    <Flex
+      as="button"
+      h="4"
+      w="full"
+      justify={"space-between"}
+      onClick={() => {
+        callback();
+      }}
+    >
+      <Box h="4" textAlign="left">
+        <Text fontSize="ml" fontWeight="700" textColor={textColor || ""}>
+          {name}
+        </Text>
+      </Box>
+      <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme || ""} />
+    </Flex>
   );
-}
+};
 
 interface SettingTutorialModalParameter {
   name: string;
@@ -96,37 +101,36 @@ interface SettingTutorialModalParameter {
 }
 
 export const SettingTutorialModal = ({ name, ariaLabel, colorScheme, textColor }: SettingTutorialModalParameter) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-      <VStack w="full">
-        <Flex as='button' h="4" w="full" justify={"space-between"} onClick={onOpen}>
-          <Box h="4" textAlign="left">
-            <Text fontSize="ml" fontWeight="700" textColor={textColor ? textColor : "black"}>
-              {name}
-            </Text>
-          </Box>
-          <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme ? colorScheme : "black"}/>
-        </Flex>
+    <VStack w="full">
+      <Flex as="button" h="4" w="full" justify={"space-between"} onClick={onOpen}>
+        <Box h="4" textAlign="left">
+          <Text fontSize="ml" fontWeight="700" textColor={textColor || ""}>
+            {name}
+          </Text>
+        </Box>
+        <Icon as={MdNavigateNext} w={10} h={6} color={colorScheme || ""} />
+      </Flex>
 
-        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size="xs">
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Tutorial</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              What should we put in the tutorial
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
+      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered size="xs">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Tutorial</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            What should we put in the tutorial
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+          </ModalBody>
 
-            </ModalBody>
-
-            <ModalFooter />
-          </ModalContent>
-        </Modal>
-      </VStack> 
+          <ModalFooter />
+        </ModalContent>
+      </Modal>
+    </VStack>
   );
-}
+};

@@ -1,8 +1,5 @@
-import { SimpleGrid, Box, Center, Circle, Text, VStack, Flex } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
+import { SimpleGrid, Box, Center, Circle, Text, VStack, Flex, Button, Tabs, TabList, TabPanels, Tab, TabPanel, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, useColorModeValue } from "@chakra-ui/react";
 import { AdvancedSettingSliderBox } from "../../components/LayoutComponents";
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -54,35 +51,35 @@ const AirHockeyPageAdvancedSetting = () => {
     <VStack width={{ base: "full", sm: "390px" }} paddingBottom="8">
       {/* preview */}
       <VStack px="12" spacing="8" w="full">
-        <Flex position="fixed" bg="white" zIndex="10" w="full" flexDir="column" alignItems="center" top="16" px="12" gap="4" paddingBottom="4" >
+        <Flex position="fixed" bg={useColorModeValue("white","gray.800")} zIndex="10" w="full" flexDir="column" alignItems="center" top="16" px="12" gap="4" paddingBottom="4" >
           <Text fontSize="3xl" fontWeight="700" textAlign="center">
             Advanced Setting
           </Text>
-          <SimpleGrid w={{ base: "full", sm: "340px" }} columns={2} spacing="0" borderWidth="medium" borderColor="#000000" >
+          <SimpleGrid w={{ base: "full", sm: "340px" }} columns={2} spacing="0" borderWidth="medium" borderColor="gray.900" >
             <Center bg="gray.200" height="100" fontSize="xx-large">
-              <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-                <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+              <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="gray.900" borderStyle="solid">
+                <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="gray.900" borderStyle="dashed">
                   👋
                 </Circle>
               </Circle>
             </Center>
             <Center bg="gray.200" height="100" fontSize="xx-large">
-              <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-                <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+              <Circle size={airHockeyGameData.noCNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="gray.900" borderStyle="solid">
+                <Circle size={airHockeyGameData.noCNTLRadius * 3 + airHockeyGameData.noCNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="gray.900" borderStyle="dashed">
                   👋
                 </Circle>
               </Circle>
             </Center>
             <Center bg="gray.200" height="100" fontSize="xx-large">
-              <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-                <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+              <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="gray.900" borderStyle="solid">
+                <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="gray.900" borderStyle="dashed">
                   🕹️
                 </Circle>
               </Circle>
             </Center>
             <Center bg="gray.200" height="100" fontSize="xx-large">
-              <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="#000000" borderStyle="solid">
-                <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="#000000" borderStyle="dashed">
+              <Circle size={airHockeyGameData.CNTLRadius * 3 + 40 + "px"} borderWidth="1px" borderColor="gray.900" borderStyle="solid">
+                <Circle size={airHockeyGameData.CNTLRadius * 3 + airHockeyGameData.CNTLExpansionSize * 4 + 40 + "px"} borderWidth="thin" borderColor="gray.900" borderStyle="dashed">
                   🕹️
                 </Circle>
               </Circle>

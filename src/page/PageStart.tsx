@@ -1,7 +1,7 @@
 import AiRHockeyVideo from '../comm/AirHockeyVideo.gif';
 import { ProgressBar } from '../components/ProgressBar';
 import './PageStart.css';
-import { Box, Center, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Image, Text, VStack, useColorModeValue } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 
 
@@ -11,7 +11,7 @@ function PageStart() {
     <VStack width={{base:"full", sm:"390px"}} spacing='1' paddingBottom='8'>
       <Box w="full" h="16" />
       {/* progress bar */}
-      <Center w="full" position="fixed" top="16" zIndex="10" bg="white">
+      <Center w="full" position="fixed" top="16" zIndex="10" bg={useColorModeValue("white","gray.800")}>
         <ProgressBar Step={1}/>
       </Center>
       {/* game selection */}
@@ -23,7 +23,7 @@ function PageStart() {
               <Image src={AiRHockeyVideo} alt='AirHockeyVideo' h='full'/>
             </Box>
             <Center position='absolute' w='full' h='200'>
-                <Text textAlign='center' color='#46a3f7' fontWeight='bold' fontSize='4xl'>Air Hockey</Text>
+                <Text textAlign='center' color='blue.300' fontWeight='bold' fontSize='4xl'>Air Hockey</Text>
             </Center>
           </Link>
         </Box>

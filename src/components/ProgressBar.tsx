@@ -57,7 +57,7 @@ function MyCircle(props: MyCircleProps) {
 
     if (props.Active) {
         return (
-            <Circle size='10' fontWeight='bold' bg='#46a3f7' color='#000000'>
+            <Circle size='10' fontWeight='bold' bg='blue.300' color='gray.900'>
                 { props.IconStep }
             </Circle>
         );
@@ -65,7 +65,7 @@ function MyCircle(props: MyCircleProps) {
     
 
     return (
-        <Circle size='10' borderColor='#46a3f7' borderWidth='medium' fontWeight='bold'>
+        <Circle size='10' borderColor='blue.300' borderWidth='medium' fontWeight='bold'>
             { props.IconStep }
         </Circle>
     );

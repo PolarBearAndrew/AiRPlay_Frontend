@@ -3,7 +3,7 @@ import { ProgressBar } from "../../components/ProgressBar";
 import { Box, Center, Flex, Spacer, Text, VStack } from "@chakra-ui/react";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from "@chakra-ui/react";
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, useColorModeValue } from "@chakra-ui/react";
 import { MdPlayArrow, MdOutlineVolumeUp, MdPause, MdKeyboardArrowLeft, MdOutlineRestartAlt } from "react-icons/md";
 import { useStopwatch } from "react-timer-hook";
 import getDataModel from "./DataModel";
@@ -50,18 +50,18 @@ function AirHockeyPageSetup() {
     <VStack width={{ base: "full", sm: "390px" }} spacing="1" paddingBottom="8">
       <Box w="full" h="16" />
       {/* progress bar */}
-      <Center w="full" position="fixed" top="16" zIndex="11" bg="white">
+      <Center w="full" position="fixed" top="16" zIndex="11" bg={useColorModeValue("white","gray.800")}>
         <ProgressBar Step={myStep} />
       </Center>
       {/* game setup */}
-      <VStack p="4" px="12" spacing="8" w="full" position="fixed" bg="white" zIndex={10}>
+      <VStack p="4" px="12" spacing="8" w="full" position="fixed" bg={useColorModeValue("white","gray.800")} zIndex={10}>
         <Box w="full" h="12" />
         <Box w="full" h="8" textAlign="center">
           <Text fontSize="3xl" fontWeight="700">
             Air Hockey
           </Text>
         </Box>
-        <CircularProgress value={100} color="#46a3f7" capIsRound size="60" thickness="8">
+        <CircularProgress value={100} color="blue.300" capIsRound size="60" thickness="8">
           {/* We do not have a time limit in our real game. So we should just display how long we have played right not*/}
           <CircularProgressLabel fontSize="5xl" fontWeight="500">
             {minutesSt.padStart(2, "0")}:{secondsSt.padStart(2, "0")}
@@ -180,10 +180,10 @@ function AirHockeyPageSetup() {
           <Box w="200px" h="4">
             <Slider aria-label="volume-slider" defaultValue={30} min={0} max={100} step={10}>
               <SliderTrack bg="gray.300">
-                <SliderFilledTrack bg="#000000" />
+                <SliderFilledTrack bg="gray.900" />
               </SliderTrack>
               <SliderThumb boxSize={6}>
-                <Box color="#000000" as={MdOutlineVolumeUp} />
+                <Box color="gray.900" as={MdOutlineVolumeUp} />
               </SliderThumb>
             </Slider>
           </Box>
