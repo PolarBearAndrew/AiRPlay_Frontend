@@ -24,7 +24,7 @@ function getNextAlertTime(): Date {
 }
 
 function Root(props: RootProps) {
-  const timerResult = useTimer({expiryTimestamp: new Date() });
+  const timerResult = useTimer({expiryTimestamp: new Date(getNextAlertTime()), autoStart: false });
   
   return (
     <VStack spacing='1' paddingBottom='8'>
