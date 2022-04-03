@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ProgressBar } from "../../components/ProgressBar";
-import { Box, Center, Flex, Spacer, Text, VStack } from "@chakra-ui/react";
+import { Box, Center, Flex, Spacer, Text, useForceUpdate, VStack } from "@chakra-ui/react";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, useColorModeValue } from "@chakra-ui/react";
@@ -9,12 +9,17 @@ import { useStopwatch } from "react-timer-hook";
 import getDataModel from "./DataModel";
 import { SettingClickBox, SettingLinkBox, SettingTutorialModal } from "../../components/LayoutComponents";
 import { Link } from "react-router-dom";
-import {clockState, getClockDataModel} from "./ClockDataModel";
+import { clockState, getClockDataModel } from "./ClockDataModel";
+import { TimerResult } from "react-timer-hook";
 
-function AirHockeyPageSetup() {
+interface AirHockeyPageSetupProps extends TimerResult {
+  totalSeconds: number
+  restart: () => void
+}
+
+function AirHockeyPageSetup(props: AirHockeyPageSetupProps) {
   const [myStep, setMyStep] = useState(2);
-
-  // const totalSeconds = 10; //next step - set timer
+  const {isRunning, seconds, minutes, totalSeconds, start, pause, resume, restart} = props;
   // const time = new Date();
   // time.setSeconds(time.getSeconds() + totalSeconds);
 
@@ -39,9 +44,9 @@ function AirHockeyPageSetup() {
   // Connection to data
   const airHockeyDataModel = getDataModel();
 
-  const clockDataModel = getClockDataModel();
+  // const clockDataModel = getClockDataModel();
 
-  const { seconds, minutes, isRunning, start, pause} = useStopwatch({ autoStart:  clockDataModel.state === clockState.isRunning, offsetTimestamp: (clockDataModel.state === clockState.isUnstart)? new Date(): clockDataModel.getOffSet()});
+  // const { seconds, minutes, isRunning, start, pause} = useStopwatch({ autoStart:  clockDataModel.state === clockState.isRunning, offsetTimestamp: (clockDataModel.state === clockState.isUnstart)? new Date(): clockDataModel.getOffSet()});
 
   const minutesSt = minutes + "";
   const secondsSt = seconds + "";
@@ -61,13 +66,13 @@ function AirHockeyPageSetup() {
             Air Hockey
           </Text>
         </Box>
-        <CircularProgress value={100} color="blue.400" capIsRound size="60" thickness="8">
+        <CircularProgress value={(minutes*60+seconds/totalSeconds)*100} color="blue.400" capIsRound size="60" thickness="8">
           {/* We do not have a time limit in our real game. So we should just display how long we have played right not*/}
           <CircularProgressLabel fontSize="5xl" fontWeight="500">
             {minutesSt.padStart(2, "0")}:{secondsSt.padStart(2, "0")}
           </CircularProgressLabel>
         </CircularProgress>
-        {/* {isRunning ? (
+        {isRunning ? (
           <Button
             w="24"
             leftIcon={<MdPause />}
@@ -80,7 +85,7 @@ function AirHockeyPageSetup() {
           >
             Pause
           </Button>
-          ) : ( (totalSeconds == minutes*60 + seconds) ? (
+          ) : ( (( totalSeconds == minutes *60 + seconds) ? (
                       <Button
                         w="24"
                         leftIcon={<MdPlayArrow />}
@@ -99,10 +104,8 @@ function AirHockeyPageSetup() {
                             colorScheme="yellow"
                             variant="solid"
                             onClick={() => {
-                              const time = new Date();
-                              time.setSeconds(time.getSeconds() + totalSeconds);
                               setMyStep(3);
-                              restart(time)}}
+                              restart()}}
                           >
                             Restart
                           </Button>
@@ -118,10 +121,10 @@ function AirHockeyPageSetup() {
                           >
                             Resume
                           </Button>
-                        )))
-        } */}
+                        ))))
+        }
         {/* <Button onClick={() => setMyStep((previousVal) => (previousVal + 1))}>Next step</Button> */}
-
+{/* 
         {isRunning ? (
           <Button
             w="24"
@@ -166,7 +169,7 @@ function AirHockeyPageSetup() {
           >
             Resume
           </Button>
-        )}
+        )} */}
       </VStack>
       <VStack spacing="8" py="12">
         <Box w="full" h="360" />
@@ -197,7 +200,7 @@ function AirHockeyPageSetup() {
           }}
           ariaLabel="recapture-background"
         />
-        <Link to="/">
+        <Link to="/" onClick={useForceUpdate}>
           <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="red" variant="outline" marginTop="4">
             Exit
           </Button>
@@ -207,64 +210,5 @@ function AirHockeyPageSetup() {
   );
 }
 
-// function PlayBtN(){
-
-//   return(
-//     <Button
-//       w ='24'
-//       leftIcon={<MdPlayArrow />}
-//       colorScheme='yellow'
-//       variant='solid'
-//       onClick={() => { this.PageSetup(setMyStep(3)); this.PageSetup(start())}}
-//     >
-//       Play
-//     </Button>
-//   )
-// }
-
-// function PauseBtN(){
-//   return(
-//     <Button
-//       w ='24'
-//       leftIcon={<MdPause />}
-//       colorScheme='yellow'
-//       variant='outline'
-//       // onClick={() => {setMyStep(2)}}
-//     >
-//       Pause
-//     </Button>
-//   )
-// }
-
-// function EndModal() {
-
-//   const { isOpen, onClose } = useDisclosure()
-
-//   return (
-//       <Modal isOpen={isOpen} onClose={onClose}>
-//         <ModalOverlay />
-//         <ModalContent>
-//           <ModalHeader />
-//           <ModalBody textAlign='center' fontSize='x-large' fontWeight='bold'>
-//             Nice Play
-//           </ModalBody>
-//           <ModalFooter>
-//             <Link to='/'>
-//               <Button>Restart</Button>
-//             </Link>
-//             <Link to='/airhockey/setup'>
-//               <Button>End</Button>
-//             </Link>
-//           </ModalFooter>
-//         </ModalContent>
-//       </Modal>
-//   )
-// }
-
-// function getMyProgress(currSec: number, currMin: number, totalTime: number) {
-//   const currTotalSec = currSec + currMin * 60;
-//   const currProgress = (currTotalSec / totalTime) * 100;
-//   return currProgress;
-// }
 
 export { AirHockeyPageSetup };

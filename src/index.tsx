@@ -9,15 +9,38 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, VStack } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import theme from './lib/theme';
+import { useTimer } from "react-timer-hook";
+import { Item } from 'framer-motion/types/components/Reorder/Item';
 
 interface RootProps {
-  children: JSX.Element[];
+}
+
+const totalSeconds = 10; //next step - set timer
+
+function getNextAlertTime(): Date {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + totalSeconds);
+  return time
 }
 
 function Root(props: RootProps) {
+  const timerResult = useTimer({expiryTimestamp: new Date() });
+  
   return (
     <VStack spacing='1' paddingBottom='8'>
-      {props.children}
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<PageStart />} />
+        <Route path='/airhockey/setup' element={
+          <AirHockeyPageSetup 
+            {...timerResult}
+            totalSeconds={totalSeconds}
+            start={() => {timerResult.restart(getNextAlertTime()) }}
+            restart={() => {timerResult.restart(getNextAlertTime()) }}
+          />
+        }/>
+        <Route path='/airhockey/setting' element={<AirHockeyPageAdvancedSetting />} />
+      </Routes>
     </VStack>
   )
 }
@@ -26,14 +49,7 @@ ReactDOM.render(
     <React.StrictMode>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
-          <Root>
-            <NavBar />
-            <Routes>
-              <Route path='/' element={<PageStart />} />
-              <Route path='/airhockey/setup' element={<AirHockeyPageSetup />} />
-              <Route path='/airhockey/setting' element={<AirHockeyPageAdvancedSetting />} />
-            </Routes>
-          </Root>
+          <Root />
         </BrowserRouter> 
       </ChakraProvider>
     </React.StrictMode>,
