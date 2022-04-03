@@ -11,7 +11,6 @@ import { SettingClickBox, SettingLinkBox, SettingTutorialModal } from "../../com
 import { Link } from "react-router-dom";
 import { clockState, getClockDataModel } from "./ClockDataModel";
 import { TimerResult } from "react-timer-hook";
-
 interface AirHockeyPageSetupProps extends TimerResult {
   totalSeconds: number
   restart: () => void
@@ -66,7 +65,7 @@ function AirHockeyPageSetup(props: AirHockeyPageSetupProps) {
             Air Hockey
           </Text>
         </Box>
-        <CircularProgress value={(minutes*60+seconds/totalSeconds)*100} color="blue.400" capIsRound size="60" thickness="8">
+        <CircularProgress value={(minutes*60+seconds)/totalSeconds*100} color="blue.400" capIsRound size="60" thickness="8">
           {/* We do not have a time limit in our real game. So we should just display how long we have played right not*/}
           <CircularProgressLabel fontSize="5xl" fontWeight="500">
             {minutesSt.padStart(2, "0")}:{secondsSt.padStart(2, "0")}

@@ -15,7 +15,7 @@ import { Item } from 'framer-motion/types/components/Reorder/Item';
 interface RootProps {
 }
 
-const totalSeconds = 10; //next step - set timer
+const totalSeconds = 300; //next step - set timer
 
 function getNextAlertTime(): Date {
   const time = new Date();
