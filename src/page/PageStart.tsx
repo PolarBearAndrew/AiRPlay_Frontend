@@ -23,14 +23,14 @@ function PageStart() {
               <Image src={AiRHockeyVideo} alt='AirHockeyVideo' h='full'/>
             </Box>
             <Center position='absolute' w='full' h='200'>
-                <Text textAlign='center' color='blue.300' fontWeight='bold' fontSize='4xl'>Air Hockey</Text>
+                <Text textAlign='center' color='blue.400' fontWeight='bold' fontSize='4xl'>Air Hockey</Text>
             </Center>
           </Link>
         </Box>
-        <Center w='full' h='200' bg='gray.300' rounded='12' overflow='hidden' boxShadow='sm'>
+        <Center w='full' h='200' bg='gray.400' rounded='12' overflow='hidden' boxShadow='sm'>
           More to come....
         </Center>
-        <Center w='full' h='200' bg='gray.300' rounded='12' overflow='hidden' boxShadow='sm'>
+        <Center w='full' h='200' bg='gray.400' rounded='12' overflow='hidden' boxShadow='sm'>
           More to come....
         </Center>
       </VStack>

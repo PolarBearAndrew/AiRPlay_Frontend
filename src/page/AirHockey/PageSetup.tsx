@@ -48,20 +48,20 @@ function AirHockeyPageSetup() {
 
   return (
     <VStack width={{ base: "full", sm: "390px" }} spacing="1" paddingBottom="8">
-      <Box w="full" h="16" />
+      <Box w="full" h="32" />
       {/* progress bar */}
       <Center w="full" position="fixed" top="14" zIndex="11" bg={useColorModeValue("white","gray.800")}>
         <ProgressBar Step={myStep} />
       </Center>
       {/* game setup */}
       <VStack p="4" px="12" spacing="8" w="full" position="fixed" bg={useColorModeValue("white","gray.800")} zIndex={10}>
-        <Box w="full" h="12" />
+        <Box w="full" h="24" />
         <Box w="full" h="8" textAlign="center">
           <Text fontSize="3xl" fontWeight="700">
             Air Hockey
           </Text>
         </Box>
-        <CircularProgress value={100} color="blue.300" capIsRound size="60" thickness="8">
+        <CircularProgress value={100} color="blue.400" capIsRound size="60" thickness="8">
           {/* We do not have a time limit in our real game. So we should just display how long we have played right not*/}
           <CircularProgressLabel fontSize="5xl" fontWeight="500">
             {minutesSt.padStart(2, "0")}:{secondsSt.padStart(2, "0")}
@@ -139,7 +139,7 @@ function AirHockeyPageSetup() {
         ) : minutes < 1 && seconds < 1 ? (
           <Button
             w="24"
-            leftIcon={<MdOutlineRestartAlt />}
+            leftIcon={<MdPlayArrow />}
             colorScheme="yellow"
             variant="solid"
             onClick={() => {
@@ -168,8 +168,8 @@ function AirHockeyPageSetup() {
           </Button>
         )}
       </VStack>
-      <VStack spacing="8" px="12">
-        <Box w="full" h="420" />
+      <VStack spacing="8" py="12">
+        <Box w="full" h="360" />
         <Flex h="4" align="center" w="full">
           <Box w="100px" h="4" textAlign="left">
             <Text fontSize="ml" fontWeight="700">
@@ -179,11 +179,11 @@ function AirHockeyPageSetup() {
           <Spacer />
           <Box w="200px" h="4">
             <Slider aria-label="volume-slider" defaultValue={30} min={0} max={100} step={10}>
-              <SliderTrack bg="gray.300">
-                <SliderFilledTrack bg={useColorModeValue( "gray.900", "blue.300")} />
+              <SliderTrack bg="gray">
+                <SliderFilledTrack bg={useColorModeValue( "gray.900", "white")} />
               </SliderTrack>
               <SliderThumb boxSize={6}>
-                <Box color={useColorModeValue( "gray.900", "blue.400")} as={MdOutlineVolumeUp} />
+                <Box color={useColorModeValue("gray.900", "gray.900")} as={MdOutlineVolumeUp}/>
               </SliderThumb>
             </Slider>
           </Box>
@@ -197,9 +197,8 @@ function AirHockeyPageSetup() {
           }}
           ariaLabel="recapture-background"
         />
-        <Spacer h="4px" />
         <Link to="/">
-          <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="red" variant="outline">
+          <Button leftIcon={<MdKeyboardArrowLeft />} colorScheme="red" variant="outline" marginTop="4">
             Exit
           </Button>
         </Link>

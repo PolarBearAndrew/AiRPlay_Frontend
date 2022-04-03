@@ -5,13 +5,10 @@ const theme = extendTheme({
     initialColorMode: 'light',
     useSystemColorMode: true,
   },
-  colors: {
+  colors: {    
     tab: {
       100:'#46a3f7', // for background
       700:'#000000', // for text
-    },
-    blue:{
-      300:'#46a3f7',
     },
   },
   fonts: {

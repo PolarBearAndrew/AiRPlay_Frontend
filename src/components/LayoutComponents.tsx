@@ -12,10 +12,10 @@ interface SliderParameter {
 
 export const AdvancedSettingSliders = ({ ariaLabel, defaultValue, min, max, step, onChangeEndFunc }: SliderParameter) => (
   <Slider aria-label={ariaLabel} defaultValue={defaultValue} min={min || 0} max={max || 100} step={step || 10} onChangeEnd={onChangeEndFunc}>
-    <SliderTrack bg="grey">
-      <SliderFilledTrack bg = {useColorModeValue( "gray.900", "blue.300")} />
+    <SliderTrack bg="gray">
+      <SliderFilledTrack bg = {useColorModeValue( "gray.800", "white")} />
     </SliderTrack>
-    <SliderThumb boxSize="4" bg={useColorModeValue( "gray.900", "blue.400")} />
+    <SliderThumb boxSize="4" bg={useColorModeValue( "gray.800", "white")} />
   </Slider>
 );
 

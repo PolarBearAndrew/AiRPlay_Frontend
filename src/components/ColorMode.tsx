@@ -3,5 +3,5 @@ import { useColorMode, Button, IconButton, useColorModeValue } from "@chakra-ui/
 
 export const ColorModeButton = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  return <IconButton aria-label="Toggle theme" onClick={toggleColorMode} icon={useColorModeValue(<MoonIcon />, <SunIcon />)}></IconButton>;
+  return <IconButton bg={useColorModeValue("transparent", "transparent")} aria-label="Toggle theme" onClick={toggleColorMode} icon={useColorModeValue(<SunIcon />, <MoonIcon />)}></IconButton>;
 };

@@ -88,7 +88,7 @@ const AirHockeyPageAdvancedSetting = () => {
         </Flex>
         <Box w="full" h="300" />
         {/* court setting */}
-        <Accordion w="full" defaultIndex={[0]} allowMultiple>
+        <Accordion w="full" allowToggle>
           <AccordionItem paddingY={2}>
             <AccordionButton>
               <Box flex="1" textAlign="left" fontWeight="bold">
@@ -167,7 +167,7 @@ const AirHockeyPageAdvancedSetting = () => {
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pb={4}>
-              <Tabs w="full" isFitted variant="soft-rounded" colorScheme="tab">
+              <Tabs w="full" isFitted variant="soft-rounded" colorScheme='gray'>
                 <TabList>
                   <Tab fontSize="sm">
                     👋 <br></br>No CNTL
